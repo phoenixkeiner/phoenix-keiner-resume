@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/phoenix-keiner-resume/static/css/main.10928de3.css",
+    "main.js": "/phoenix-keiner-resume/static/js/main.fd77cb40.js",
+    "index.html": "/phoenix-keiner-resume/index.html",
+    "main.10928de3.css.map": "/phoenix-keiner-resume/static/css/main.10928de3.css.map",
+    "main.fd77cb40.js.map": "/phoenix-keiner-resume/static/js/main.fd77cb40.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.10928de3.css",
+    "static/js/main.fd77cb40.js"
+  ]
+}
