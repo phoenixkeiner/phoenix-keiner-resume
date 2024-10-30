@@ -6,16 +6,15 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 p-6">
       <header className="mb-12">
-        <h1 className="text-4xl font-bold">Phoenix Keiner</h1>
-        <p className="text-xl">Web Developer</p>
+        <functions.Intro/>
         <div className="mt-6 flex gap-6">
         <functions.SocialLink
-              href="#"
+              href="https://github.com/phoenixkeiner/"
               aria-label="Follow on GitHub"
               icon={SocialIcons.GitHubIcon}
             />
         <functions.SocialLink
-              href="#"
+              href="https://www.linkedin.com/in/phoenix-keiner/"
               aria-label="Follow on LinkedIn"
               icon={SocialIcons.LinkedInIcon}
             />
