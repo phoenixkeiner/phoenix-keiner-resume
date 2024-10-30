@@ -1,4 +1,6 @@
 import React from "react";
+import * as functions from './components/functions.jsx';
+import * as SocialIcons from './components/SocialIcons';
 
 function App() {
   return (
@@ -6,6 +8,18 @@ function App() {
       <header className="mb-12">
         <h1 className="text-4xl font-bold">Phoenix Keiner</h1>
         <p className="text-xl">Web Developer</p>
+        <div className="mt-6 flex gap-6">
+        <functions.SocialLink
+              href="#"
+              aria-label="Follow on GitHub"
+              icon={SocialIcons.GitHubIcon}
+            />
+        <functions.SocialLink
+              href="#"
+              aria-label="Follow on LinkedIn"
+              icon={SocialIcons.LinkedInIcon}
+            />
+        </div>
       </header>
       <main>
         <section className="mb-8">
