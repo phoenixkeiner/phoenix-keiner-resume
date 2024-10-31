@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { personalInfo, socials, experiences } from './data';
+import { personalInfo } from './data';
 import faceImage from '../images/face.jpg';
+import * as SocialIcons from './SocialIcons.jsx';
 
 export function SocialLink({ icon: Icon, ...props }) {
   return (
@@ -10,23 +11,40 @@ export function SocialLink({ icon: Icon, ...props }) {
   );
 }
 
-export function Intro() {
+export const Intro = () => {
   return (
-      <div>
-        <img
-          alt="My beautiful face"
-          width="512"
-          height="512"
-          className="rounded-full bg-zinc-100 object-cover h-16 w-16"
-          style={{ color: 'transparent' }}
-          sizes="4rem"
-          src={faceImage}
-        />
-        <h1 className="text-4xl font-bold my-8">{personalInfo.name}</h1>
-        <p className="text-xl">{personalInfo.description}</p>
+    <div className="flex flex-col items-center md:flex-row md:items-start md:justify-start">
+      <img
+        alt="My beautiful face"
+        width="512"
+        height="512"
+        className="rounded-full bg-zinc-100 object-cover h-16 w-16 md:h-32 md:w-32 border-4 border-[#eee8aa] shadow-glow"
+        style={{ color: 'transparent' }}
+        sizes="4rem"
+        src={faceImage}
+      />
+      <div className="md:ml-4 mt-4 md:mt-0">
+        <h1 className="text-4xl font-bold mt-8">{personalInfo.name}</h1>
+        <h3 className="text-base font-semibold mb-8 tracking-tight text-gray-600">{personalInfo.email}</h3>
+        <FadeInOnScroll>
+          <p className="text-xl">{personalInfo.description}</p>
+        </FadeInOnScroll>
+        <div className="flex justify-center space-x-4 mt-4 md:justify-start">
+          <SocialLink
+            href="https://github.com/phoenixkeiner/"
+            aria-label="Follow on GitHub"
+            icon={SocialIcons.GitHubIcon}
+          />
+          <SocialLink
+            href="https://www.linkedin.com/in/phoenix-keiner/"
+            aria-label="Follow on LinkedIn"
+            icon={SocialIcons.LinkedInIcon}
+          />
+        </div>
       </div>
+    </div>
   );
-}
+};
 
 export function FadeInOnScroll({ children }) {
   const ref = useRef();
