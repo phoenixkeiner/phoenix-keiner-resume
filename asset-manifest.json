@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/phoenix-keiner-resume/static/css/main.b74807e5.css",
-    "main.js": "/phoenix-keiner-resume/static/js/main.64cf166a.js",
+    "main.css": "/phoenix-keiner-resume/static/css/main.1d87b0fb.css",
+    "main.js": "/phoenix-keiner-resume/static/js/main.38c709a2.js",
     "static/media/face.jpg": "/phoenix-keiner-resume/static/media/face.04c0e937f0394f7a1921.jpg",
     "index.html": "/phoenix-keiner-resume/index.html",
-    "main.b74807e5.css.map": "/phoenix-keiner-resume/static/css/main.b74807e5.css.map",
-    "main.64cf166a.js.map": "/phoenix-keiner-resume/static/js/main.64cf166a.js.map"
+    "main.1d87b0fb.css.map": "/phoenix-keiner-resume/static/css/main.1d87b0fb.css.map",
+    "main.38c709a2.js.map": "/phoenix-keiner-resume/static/js/main.38c709a2.js.map"
   },
   "entrypoints": [
-    "static/css/main.b74807e5.css",
-    "static/js/main.64cf166a.js"
+    "static/css/main.1d87b0fb.css",
+    "static/js/main.38c709a2.js"
   ]
 }
