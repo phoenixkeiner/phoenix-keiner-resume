@@ -1,5 +1,6 @@
+import React, { useEffect, useRef, useState } from 'react';
+import { personalInfo, socials, experiences } from './data';
 import faceImage from '../images/face.jpg';
-import React from 'react';
 
 export function SocialLink({ icon: Icon, ...props }) {
   return (
@@ -20,12 +21,39 @@ export function Intro() {
           style={{ color: 'transparent' }}
           sizes="4rem"
           src={faceImage}
-      />
-          <h1 className="text-4xl font-bold my-8">Phoenix Keiner</h1>
-          <p className="text-xl">
-          Phoenix Keiner is a skilled web developer based in Fort Wayne, IN, with a strong foundation in both front-end and back-end development. Currently employed at Annie’s Publishing, he specializes in using technologies like Adobe Magento, C#, and Laravel to enhance user experiences on a large scale. With a proven track record of successful system upgrades, including transitioning to PHP 8.2 and Red Hat 8.0, he effectively addresses complex technical challenges. Phoenix also plays a key role in implementing tracking for Google Analytics 4, ensuring data accuracy and compliance with ADA standards through the use of the Audioeye API. His experience extends beyond coding; he adeptly manages interdepartmental requests and collaborates with teams to optimize website performance. A former technology teacher, he integrates educational principles into his development work, fostering a collaborative environment. With certifications in Data Analytics and a passion for mixed martial arts, Phoenix combines technical expertise with a commitment to continuous learning and growth.
-          </p>
+        />
+        <h1 className="text-4xl font-bold my-8">{personalInfo.name}</h1>
+        <p className="text-xl">{personalInfo.description}</p>
       </div>
+  );
+}
+
+export function FadeInOnScroll({ children }) {
+  const ref = useRef();
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+    return () => {
+      if (ref.current) observer.unobserve(ref.current);
+    };
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+    >
+      {children}
+    </div>
   );
 }
 
@@ -55,7 +83,7 @@ export function Card({ as, className, children }) {
 
 export function CardTitle({ as, href, children }) {
   const Component = as ?? 'h2';
-  const titleClassName = "text-base font-semibold tracking-tight text-zinc-800";
+  const titleClassName = "text-base font-semibold tracking-tight text-gray-600";
 
   return (
     <Component className={titleClassName}>
@@ -72,7 +100,7 @@ export function CardTitle({ as, href, children }) {
 
 export function CardDescription({ children }) {
   return (
-    <p className="relative z-10 mt-2 text-sm text-zinc-600">
+    <p className="relative z-10 mt-2 text-sm text-gray-600">
       {children}
     </p>
   );
@@ -80,7 +108,7 @@ export function CardDescription({ children }) {
 
 export function CardCta({ children }) {
   return (
-    <div aria-hidden="true" className="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500">
+    <div aria-hidden="true" className="relative z-10 mt-4 flex items-center text-sm font-medium text-gray-600">
       {children}
       <ChevronRightIcon className="ml-1 h-4 w-4 stroke-current" />
     </div>
@@ -89,7 +117,7 @@ export function CardCta({ children }) {
 
 export function CardEyebrow({ as, decorate = false, className, children, ...props }) {
   const Component = as ?? 'p';
-  const eyebrowClassName = `relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 ${className}`;
+  const eyebrowClassName = `relative z-10 order-first mb-3 flex items-center text-sm text-gray-600 ${className}`;
 
   return (
     <Component className={eyebrowClassName} {...props}>
@@ -105,25 +133,33 @@ export function CardEyebrow({ as, decorate = false, className, children, ...prop
 
 export const ExperienceItem = ({ date, role, company, responsibilities }) => {
   return (
-    <div className="flex">
-      <div className="w-1/4 pr-4">
-        <p className="text-lg font-semibold">{date}</p>
-        <p className="text-sm text-gray-600 italic">{role}</p>
+    <FadeInOnScroll>
+      <div className="flex">
+        <div className="w-1/4 pr-4">
+          <p className="text-lg font-semibold">{date}</p>
+          <p className="text-sm text-gray-600 italic">{role}</p>
+        </div>
+        <div className="w-3/4">
+          <h3 className="text-xl font-semibold">{company}</h3>
+          <CardDescription>
+            <ul className="list-disc ml-5">
+              {responsibilities.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </CardDescription>
+        </div>
       </div>
-      <div className="w-3/4">
-        <h3 className="text-xl font-semibold">{company}</h3>
-        <CardDescription>
-          <ul className="list-disc ml-5">
-            {responsibilities.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))}
-          </ul>
-        </CardDescription>
-      </div>
-    </div>
+    </FadeInOnScroll>
   );
 };
 
 export const ContentCardDescription = ({ children }) => {
-  return <div className="border-transparent p-4 bg-transparent rounded-md">{children}</div>;
+  return (
+    <FadeInOnScroll>
+      <div className="border-transparent p-4 bg-transparent rounded-md">
+        {children}
+      </div>
+    </FadeInOnScroll>
+  );
 };
