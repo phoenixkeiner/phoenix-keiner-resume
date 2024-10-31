@@ -1,6 +1,5 @@
 import React from "react";
 import * as functions from './components/functions.jsx';
-import * as SocialIcons from './components/SocialIcons';
 import { experiences, education, qualifications, projects } from './components/data.jsx';
 
 function App() {
@@ -8,18 +7,6 @@ function App() {
     <div className="min-h-screen bg-gradient-to-t from-[#BFB9FA] to-[#b3fbf9] text-gray-900 p-6 sm:p-8 md:p-10 lg:p-12">
       <header className="mb-12">
         <functions.Intro />
-        <div className="mt-6 flex gap-6">
-          <functions.SocialLink
-            href="https://github.com/phoenixkeiner/"
-            aria-label="Follow on GitHub"
-            icon={SocialIcons.GitHubIcon}
-          />
-          <functions.SocialLink
-            href="https://www.linkedin.com/in/phoenix-keiner/"
-            aria-label="Follow on LinkedIn"
-            icon={SocialIcons.LinkedInIcon}
-          />
-        </div>
       </header>
       <main>
         <section className="mb-8">
