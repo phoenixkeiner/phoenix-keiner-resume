@@ -1,3 +1,4 @@
+// Experience data
 export const experiences = [
     {
       date: "May 2021 - Present",
@@ -31,6 +32,7 @@ export const experiences = [
     }
   ];
   
+  // Education data
   export const education = [
     {
       date: "Apr. 2021",
@@ -42,5 +44,37 @@ export const experiences = [
         "Roger Bacon Scholarship and Richard Lugar Scholarship recipient."
       ]
     }
+  ];
+  
+  // Qualifications data
+  export const qualifications = [
+    "Certificate in Data Analytics from Stanford.",
+    "Google Data Analytics Professional Certificate.",
+    "Proficiency in mixing and editing audio with Dolby Atmos.",
+    "Dedicated mixed martial artist."
+  ];
+  
+  // Projects data
+  export const projects = [
+    {
+      title: "Technology Upgrade Project",
+      description: "I aided in the comprehensive upgrade of PHP from version 5.6 to 7.2 across Annie's portfolio of approximately 20 sites, addressing and resolving compatibility issues using PHP CodeSniffer. I meticulously refactored codebases to ensure smooth operation with PHP 7.2, and due to system limitations, halted further upgrades until subsequent efforts. In a follow-up project, I aided in the upgrade to PHP 8.0 and the transition of MySQL from version 5.6 to 8.0, positioning the infrastructure for an operating system upgrade."
+    },
+    {
+      title: "Tag Manager and Google Analytics Projects",
+      description: "I aided in the migration of hard-coded JavaScript tags and tracking pixels to Google Tag Manager, modernizing the company's tagging infrastructure. Building on this, I led the upgrade from Google Analytics Universal to GA4 ahead of the UA deprecation. This initiative included creating distinct development and production environments to prevent data contamination and leveraging Google Tag Manager’s environment features to ensure precise traffic routing to the appropriate GA4 accounts."
+    }
+  ];
+  
+  // Personal information data
+  export const personalInfo = {
+    name: "Phoenix Keiner",
+    location: "Fort Wayne, IN",
+    description: "Phoenix Keiner is a skilled web developer based in Fort Wayne, IN, with a strong foundation in both front-end and back-end development. Currently employed at Annie's Publishing, he specializes in using technologies like Adobe Magento, C#, and Laravel to enhance user experiences on a large scale. With a proven track record of successful system upgrades, including transitioning to PHP 8.2 and Red Hat 8.0, he effectively addresses complex technical challenges. Phoenix also plays a key role in implementing tracking for Google Analytics 4, ensuring data accuracy and compliance with ADA standards through the use of the Audioeye API. His experience extends beyond coding; he adeptly manages interdepartmental requests and collaborates with teams to optimize website performance. A former technology teacher, he integrates educational principles into his development work, fostering a collaborative environment. With certifications in Data Analytics and a passion for mixed martial arts, Phoenix combines technical expertise with a commitment to continuous learning and growth."
+  };
+  
+  // Social links data
+  export const socials = [
+    { icon: 'GitHubIcon', url: 'https://github.com/phoenixkeiner' }
   ];
   
