@@ -8,11 +8,11 @@ export const experiences = [
         "Aids in front-end and back-end website development using Adobe Magento, C# and Laravel.",
         "Has aided in PHP 8.2/Red Hat 8.0 upgrade.",
         "Implements tracking for Google Analytics 4.",
-        "Modifies, maintains, documents, and controls content and UI of websites.",
+        "Modifies, maintains, documents and controls content and UI of websites.",
         "Delivers daily promotional emails from marketing to up to 1,250,000 customers.",
         "Completes tasks related to ongoing projects or mini-projects through agile sprints.",
-        "Collaborates with the team for site performance, stability, look, and flow of all websites.",
-        "Facilitates interdepartmental requests for site modifications, updates, and redesigns.",
+        "Collaborates with the team for site performance, stability, look and flow of all websites.",
+        "Facilitates interdepartmental requests for site modifications, updates and redesigns.",
         "Drives websites to comply with ADA standards using Audioeye API.",
         "Systemizes database queries and entries using phpMyAdmin with SQL.",
         "Has planned minor workflow projects as acting project manager."
@@ -58,11 +58,11 @@ export const experiences = [
   export const projects = [
     {
       title: "Technology Upgrade Project",
-      description: "I aided in the comprehensive upgrade of PHP from version 5.6 to 7.2 across Annie's portfolio of approximately 20 sites, addressing and resolving compatibility issues using PHP CodeSniffer. I meticulously refactored codebases to ensure smooth operation with PHP 7.2, and due to system limitations, halted further upgrades until subsequent efforts. In a follow-up project, I aided in the upgrade to PHP 8.0 and the transition of MySQL from version 5.6 to 8.0, positioning the infrastructure for an operating system upgrade."
+      description: "Successfully led the comprehensive upgrade of PHP from version 5.6 to 7.2 across Annie's portfolio of approximately 20 websites, effectively addressing and resolving compatibility issues utilizing PHP CodeSniffer. I meticulously refactored the codebases to ensure seamless operation with PHP 7.2. Due to system limitations, I paused further upgrades until subsequent initiatives. In a follow-up project, I facilitated the upgrade to PHP 8.0 and orchestrated the transition of MySQL from version 5.6 to 8.0, strategically positioning the infrastructure for an operating system upgrade."
     },
     {
       title: "Tag Manager and Google Analytics Projects",
-      description: "I aided in the migration of hard-coded JavaScript tags and tracking pixels to Google Tag Manager, modernizing the company's tagging infrastructure. Building on this, I led the upgrade from Google Analytics Universal to GA4 ahead of the UA deprecation. This initiative included creating distinct development and production environments to prevent data contamination and leveraging Google Tag Manager’s environment features to ensure precise traffic routing to the appropriate GA4 accounts."
+      description: "Played a pivotal role in the migration of hard-coded JavaScript tags and tracking pixels to Google Tag Manager, thereby modernizing the company’s tagging infrastructure. Building on this foundation, I spearheaded the transition from Google Analytics Universal to GA4 ahead of the deprecation of UA. This initiative involved establishing distinct development and production environments to prevent data contamination and utilizing Google Tag Manager’s environment features to ensure accurate traffic routing to the appropriate GA4 accounts."
     }
   ];
   
@@ -70,7 +70,7 @@ export const experiences = [
   export const personalInfo = {
     name: "Phoenix Keiner",
     location: "Fort Wayne, IN",
-    description: "Phoenix Keiner is a skilled web developer based in Fort Wayne, IN, with a strong foundation in both front-end and back-end development. Currently employed at Annie's Publishing, he specializes in using technologies like Adobe Magento, C#, and Laravel to enhance user experiences on a large scale. With a proven track record of successful system upgrades, including transitioning to PHP 8.2 and Red Hat 8.0, he effectively addresses complex technical challenges. Phoenix also plays a key role in implementing tracking for Google Analytics 4, ensuring data accuracy and compliance with ADA standards through the use of the Audioeye API. His experience extends beyond coding; he adeptly manages interdepartmental requests and collaborates with teams to optimize website performance. A former technology teacher, he integrates educational principles into his development work, fostering a collaborative environment. With certifications in Data Analytics and a passion for mixed martial arts, Phoenix combines technical expertise with a commitment to continuous learning and growth."
+    description: "Phoenix Keiner is a skilled web developer based in Fort Wayne, IN, with a strong foundation in both front-end and back-end development. Currently employed at Annie's Publishing, he specializes in using technologies like Adobe Magento, C# and Laravel to enhance user experiences on a large scale. With a proven track record of successful system upgrades, including transitioning to PHP 8.2 and Red Hat 8.0, he effectively addresses complex technical challenges. Phoenix also plays a key role in implementing tracking for Google Analytics 4, ensuring data accuracy and compliance with ADA standards through the use of the Audioeye API. His experience extends beyond coding; he adeptly manages interdepartmental requests and collaborates with teams to optimize website performance. A former technology teacher, he integrates educational principles into his development work, fostering a collaborative environment. With certifications in Data Analytics and a passion for mixed martial arts, Phoenix combines technical expertise with a commitment to continuous learning and growth."
   };
   
   // Social links data

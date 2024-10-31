@@ -47,7 +47,7 @@ function App() {
             {education.map((edu, index) => (
               <functions.Card key={index}>
                 <functions.CardEyebrow className="text-lg font-semibold">{edu.date}</functions.CardEyebrow>
-                <h3 className="text-xl font-semibold bg-gradient-to-r from-purple-600 via-red-500 to-sky-800 bg-clip-text text-transparent animate-gradient">
+                <h3 className="text-base font-semibold tracking-tight text-gray-600">
                   {edu.institution}
                 </h3>
                 <functions.ContentCardDescription>
@@ -84,7 +84,7 @@ function App() {
           </h2>
           {projects.map((project, index) => (
             <functions.Card key={index} className="mt-4">
-              <functions.CardTitle href="#">
+              <functions.CardTitle>
                 {project.title}
               </functions.CardTitle>
               <functions.ContentCardDescription>
