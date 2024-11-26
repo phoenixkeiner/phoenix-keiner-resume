@@ -13,7 +13,7 @@ export function SocialLink({ icon: Icon, ...props }) {
 
 export const Intro = () => {
   return (
-    <div className="flex flex-col items-center md:flex-row md:items-start md:justify-start">
+    <div className="flex flex-col items-center md:flex-row md:items-start md:justify-start pt-2">
       <img
         alt="My beautiful face"
         width="512"

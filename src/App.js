@@ -1,13 +1,17 @@
 import React from "react";
+import Nav from './components/nav.jsx'
 import * as functions from './components/functions.jsx';
 import { experiences, education, qualifications, projects } from './components/data.jsx';
 
-function App() {
+export default function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-t from-[#BFB9FA] to-[#b3fbf9] text-gray-900 p-6 sm:p-8 md:p-10 lg:p-12">
-      <header className="mb-12">
-        <functions.Intro />
-      </header>
+    <div className="min-h-screen bg-gradient-to-t from-[#BFB9FA] to-[#b3fbf9] text-gray-900">
+      <Nav />
+      
+      <div className="p-6 sm:p-8 md:p-10 lg:p-12">
+        <header className="mb-12">
+          <functions.Intro />
+        </header>
       <main>
         <section className="mb-8">
           <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-red-500 to-sky-800 bg-clip-text text-transparent animate-gradient">
@@ -82,7 +86,6 @@ function App() {
         </section>
       </main>
     </div>
+    </div>
   );
 }
-
-export default App;
