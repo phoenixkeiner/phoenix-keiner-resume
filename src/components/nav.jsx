@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ReactImage from '../images/logo192.png';
 
 export default function Nav() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -11,7 +12,7 @@ export default function Nav() {
     <nav className="sticky top-0 w-full z-50 flex items-center justify-between px-4 py-3 shadow-md bg-[#9f8ce0]">
       <div className="flex items-center">
         <img
-          src="/logo192.png"
+          src={ReactImage}
           alt="React Logo"
           className="h-12 w-12"
         />
