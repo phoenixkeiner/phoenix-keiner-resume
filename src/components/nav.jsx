@@ -53,10 +53,15 @@ export default function Nav() {
         >
           <div className="py-1" role="none">
             <a
-              href="#project1"
-              className="block px-4 py-2 text-sm text-stone-300"
+              href="https://phoenixkeiner.github.io/bmt-notes/"
+              className="flex items-center px-4 py-2 text-sm text-stone-300"
               role="menuitem"
             >
+              <img
+                src={require('../images/logo192.png')}
+                alt="Logo"
+                className="h-4 w-4 mr-2"
+              />
               Bang Muay Thai Notes
             </a>
           </div>
