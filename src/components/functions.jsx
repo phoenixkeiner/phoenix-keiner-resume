@@ -119,9 +119,9 @@ export function CardTitle({ as, href, children }) {
 
 export function CardDescription({ children }) {
   return (
-    <p className="relative z-10 mt-2 text-sm text-gray-600">
+    <div className="relative z-10 mt-2 text-sm text-gray-600">
       {children}
-    </p>
+    </div>
   );
 }
 

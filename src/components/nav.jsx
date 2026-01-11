@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import ReactImage from '../images/logo192.png';
 
 export default function Nav() {
@@ -10,12 +11,18 @@ export default function Nav() {
 
   return (
     <nav className="sticky top-0 w-full z-50 flex items-center justify-between px-4 py-3 shadow-md bg-[#9f8ce0]">
-      <div className="flex items-center">
+      <div className="flex items-center gap-4">
         <img
           src={ReactImage}
           alt="React Logo"
           className="h-12 w-12"
         />
+        <Link 
+          to="/game"
+          className="px-4 py-2 bg-[#61dbfb] hover:bg-[#57c5e2] text-stone-700 font-medium rounded-md transition-colors"
+        >
+          Play Career Game
+        </Link>
       </div>
 
       <div className="relative">
