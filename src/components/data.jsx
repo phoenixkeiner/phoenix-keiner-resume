@@ -1,21 +1,31 @@
-// Experience data
 export const experiences = [
     {
-      date: "May 2021 - Present",
+      date: "Jan. 2025 - Present",
+      role: "System Specialist",
+      company: "Revive Home Brands, Grabill, IN",
+      responsibilities: [
+        "Lead system integration initiatives across ERP, SQL databases, WordPress websites and internal Laravel-based intranet to centralize data and streamline workflows.",
+        "Built a custom intranet dashboard using Laravel and React, delivering real-time KPIs with Python-driven analytics for leadership.",
+        "Created Golang-based microservices to send structured API data to custom WordPress plugins, improving customer experience and website performance.",
+        "Implemented Google Analytics 4 and Microsoft Clarity across WordPress properties for improved user tracking and behavior analysis.",
+        "Automated workflows and labor calculations with Go, PowerShell and Python, drastically reducing manual report generation and enabling data-driven decision-making.",
+        "Introduced Agile processes to internal IT, improving sprint planning, task tracking and interdepartmental collaboration.",
+        "Scripted in Go to fetch ERP API data and convert the data into a database for internal analytics posted on all TVs on the production floor and in-office."
+      ]
+    },
+    {
+      date: "May 2021 - Jan. 2025 (Full Time), Apr. 2025 - Present (Contract)",
       role: "Web Developer",
       company: "Annie's Publishing, Fort Wayne, IN",
       responsibilities: [
-        "Aids in front-end and back-end website development using Adobe Magento, C# and Laravel.",
-        "Has aided in PHP 8.2/Red Hat 8.0 upgrade.",
-        "Implements tracking for Google Analytics 4.",
-        "Modifies, maintains, documents and controls content and UI of websites.",
-        "Delivers daily promotional emails from marketing to up to 1,250,000 customers.",
-        "Completes tasks related to ongoing projects or mini-projects through agile sprints.",
-        "Collaborates with the team for site performance, stability, look and flow of all websites.",
-        "Facilitates interdepartmental requests for site modifications, updates and redesigns.",
-        "Drives websites to comply with ADA standards using Audioeye API.",
-        "Systemizes database queries and entries using phpMyAdmin with SQL.",
-        "Has planned minor workflow projects as acting project manager."
+        "Developed and maintained eCommerce platforms using Adobe Magento and Laravel for front-end and back-end needs.",
+        "Played a key role in PHP 8.2 and Red Hat 8.0 infrastructure upgrades.",
+        "Delivered daily promotional campaigns to ~1.25 million users via email.",
+        "Managed UI updates, content edits and documentation of websites with a focus on ADA compliance using AudioEye API.",
+        "Implemented Google Analytics 4 tracking solutions.",
+        "Wrote and optimized SQL queries using phpMyAdmin for site and database updates.",
+        "Worked closely with cross-functional teams using Agile sprints to execute marketing and product goals.",
+        "Acted as project manager on small-to-medium workflow initiatives."
       ]
     },
     {
@@ -32,7 +42,6 @@ export const experiences = [
     }
   ];
   
-  // Education data
   export const education = [
     {
       date: "Apr. 2021",
@@ -46,7 +55,6 @@ export const experiences = [
     }
   ];
   
-  // Qualifications data
   export const qualifications = [
     "Certificate in Data Analytics from Stanford.",
     "Google Data Analytics Professional Certificate.",
@@ -54,7 +62,6 @@ export const experiences = [
     "Dedicated mixed martial artist."
   ];
   
-  // Projects data
   export const projects = [
     {
       title: "Technology Upgrade Project",
@@ -62,19 +69,16 @@ export const experiences = [
     },
     {
       title: "Tag Manager and Google Analytics Projects",
-      description: "Played a pivotal role in the migration of hard-coded JavaScript tags and tracking pixels to Google Tag Manager, thereby modernizing the company’s tagging infrastructure. Building on this foundation, I spearheaded the transition from Google Analytics Universal to GA4 ahead of the deprecation of UA. This initiative involved establishing distinct development and production environments to prevent data contamination and utilizing Google Tag Manager’s environment features to ensure accurate traffic routing to the appropriate GA4 accounts."
+      description: "Played a pivotal role in the migration of hard-coded JavaScript tags and tracking pixels to Google Tag Manager, thereby modernizing the company's tagging infrastructure. Building on this foundation, I spearheaded the transition from Google Analytics Universal to GA4 ahead of the deprecation of UA. This initiative involved establishing distinct development and production environments to prevent data contamination and utilizing Google Tag Manager's environment features to ensure accurate traffic routing to the appropriate GA4 accounts."
     }
   ];
   
-  // Personal information data
   export const personalInfo = {
     name: "Phoenix Keiner",
     email: "keinerphoenix@gmail.com",
-    description: "Phoenix Keiner is a skilled web developer based in Fort Wayne, IN, with a strong foundation in both front-end and back-end development. Currently employed at Annie's Publishing, he specializes in using technologies like Adobe Magento, C# and Laravel to enhance user experiences on a large scale. With a proven track record of successful system upgrades, including transitioning to PHP 8.2 and Red Hat 8.0, he effectively addresses complex technical challenges. Phoenix also plays a key role in implementing tracking for Google Analytics 4, ensuring data accuracy and compliance with ADA standards through the use of the Audioeye API. His experience extends beyond coding; he adeptly manages interdepartmental requests and collaborates with teams to optimize website performance. A former technology teacher, he integrates educational principles into his development work, fostering a collaborative environment. With certifications in Data Analytics and a passion for mixed martial arts, Phoenix combines technical expertise with a commitment to continuous learning and growth."
+    description: "Phoenix Keiner is a skilled web developer and system specialist based in Fort Wayne, IN, with a strong foundation in both front-end and back-end development. Currently employed at Revive Home Brands, he specializes in system integration across ERP, SQL databases, WordPress and Laravel platforms while building custom solutions with Go, Python and React. With expertise in technologies like Adobe Magento, C# and Laravel, Phoenix effectively addresses complex technical challenges including PHP 8.2 and Red Hat 8.0 infrastructure upgrades. He plays a key role in implementing analytics solutions with Google Analytics 4 and Microsoft Clarity, while automating workflows to enable data-driven decision-making. His experience extends beyond coding; he adeptly manages system integration projects, introduces Agile processes and collaborates with teams to optimize performance. A former technology teacher, he integrates educational principles into his development work, fostering a collaborative environment. With certifications in Data Analytics and a passion for mixed martial arts, Phoenix combines technical expertise with a commitment to continuous learning and growth."
   };
   
-  // Social links data
   export const socials = [
     { icon: 'GitHubIcon', url: 'https://github.com/phoenixkeiner' }
   ];
-  
