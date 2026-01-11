@@ -19,7 +19,7 @@ export default function Nav() {
         />
         <Link 
           to="/game"
-          className="px-4 py-2 bg-[#61dbfb] hover:bg-[#57c5e2] text-stone-700 font-medium rounded-md transition-colors"
+          className="px-4 py-2 bg-[#61dbfb] hover:bg-[#57c5e2] text-sm text-stone-700 font-medium rounded-md transition-colors"
         >
           Play Career Game
         </Link>

@@ -144,10 +144,10 @@ export function initMainScene(k, navigate) {
     const spacing = worldHeight / 6;
     
     const dynamicPositions = {
-      university: { x: centerX, y: spacing * 1 },
-      school: { x: centerX - 100, y: spacing * 2 },
-      annies: { x: centerX + 100, y: spacing * 2 },
-      revive: { x: centerX, y: spacing * 3.5 },
+      university: { x: centerX - 25, y: spacing * 1.6 },
+      school: { x: centerX - 100, y: spacing * 3.8 },
+      annies: { x: centerX + 80, y: spacing * 2.2 },
+      revive: { x: centerX + 50, y: spacing * 3.3 },
       certifications: { x: centerX, y: spacing * 5 }
     };
 

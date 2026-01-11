@@ -21,7 +21,7 @@ export default function Game() {
     
     if (isMobile) {
       gameWidth = Math.min(window.innerWidth - 32, 500);
-      gameHeight = Math.min(window.innerHeight - 300, 700);
+      gameHeight = Math.min(window.innerHeight - 200, 750);
     } else {
       const availableHeight = window.innerHeight - 300;
       gameHeight = Math.min(availableHeight, 800);
