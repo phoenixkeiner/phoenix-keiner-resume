@@ -1,4 +1,4 @@
-import { npcDialogues, npcPositions } from '../data/npcs';
+import { npcDialogues } from '../data/npcs';
 import { skills } from '../data/skills';
 
 export function initMainScene(k, navigate) {
@@ -11,14 +11,17 @@ export function initMainScene(k, navigate) {
     let currentNpc = null;
     let dialogueIndex = 0;
 
+    const worldWidth = k.width();
+    const worldHeight = k.height();
+
     k.add([
-      k.rect(k.width(), k.height()),
+      k.rect(worldWidth, worldHeight),
       k.color(34, 139, 34),
       k.z(-10)
     ]);
 
-    for (let x = 0; x < 800; x += 32) {
-      for (let y = 0; y < 600; y += 32) {
+    for (let x = 0; x < worldWidth; x += 32) {
+      for (let y = 0; y < worldHeight; y += 32) {
         const baseGreen = 34 + Math.floor(Math.random() * 20);
         k.add([
           k.rect(32, 32),
@@ -38,9 +41,10 @@ export function initMainScene(k, navigate) {
       }
     }
 
-    for (let i = 0; i < 15; i++) {
-      const treeX = Math.random() * 800;
-      const treeY = Math.random() * 600;
+    const treeCount = Math.floor((worldWidth * worldHeight) / 10000);
+    for (let i = 0; i < treeCount; i++) {
+      const treeX = 50 + Math.random() * (worldWidth - 100);
+      const treeY = 50 + Math.random() * (worldHeight - 100);
       
       k.add([
         k.rect(8, 24),
@@ -60,7 +64,7 @@ export function initMainScene(k, navigate) {
       ]);
     }
 
-    let playerX = 100;
+    let playerX = worldWidth / 3.5;
     let playerY = 100;
 
     const playerCollision = k.add([
@@ -120,7 +124,7 @@ export function initMainScene(k, navigate) {
     ]);
 
     const nameTag = k.add([
-      k.text("Phoenix", { size: 10, font: "monospace" }),
+      k.text("Phoenix", { size: 14, font: "monospace" }),
       k.pos(playerX, playerY - 25),
       k.color(255, 255, 255),
       k.anchor("center"),
@@ -136,8 +140,19 @@ export function initMainScene(k, navigate) {
       certifications: { body: [200, 150, 50], shirt: [255, 215, 0], head: [255, 200, 140] }
     };
 
+    const centerX = worldWidth / 2;
+    const spacing = worldHeight / 6;
+    
+    const dynamicPositions = {
+      university: { x: centerX, y: spacing * 1 },
+      school: { x: centerX - 100, y: spacing * 2 },
+      annies: { x: centerX + 100, y: spacing * 2 },
+      revive: { x: centerX, y: spacing * 3.5 },
+      certifications: { x: centerX, y: spacing * 5 }
+    };
+
     const npcs = [];
-    Object.entries(npcPositions).forEach(([npcKey, position]) => {
+    Object.entries(dynamicPositions).forEach(([npcKey, position]) => {
       const npcData = npcDialogues[npcKey];
       const colors = npcSprites[npcKey];
       
@@ -173,7 +188,7 @@ export function initMainScene(k, navigate) {
       ]);
 
       k.add([
-        k.text(npcData.name, { size: 10, font: "monospace" }),
+        k.text(npcData.name, { size: 13, font: "monospace" }),
         k.pos(position.x, position.y - 25),
         k.anchor("center"),
         k.color(255, 255, 255),
@@ -185,7 +200,7 @@ export function initMainScene(k, navigate) {
     });
 
     const skillsDisplay = k.add([
-      k.text("Skills: 0/5", { size: 14, font: "monospace" }),
+      k.text("Skills: 0/5", { size: 16, font: "monospace" }),
       k.pos(10, 10),
       k.color(255, 255, 100),
       k.fixed(),
@@ -219,7 +234,7 @@ export function initMainScene(k, navigate) {
     ]);
 
     const dialogueText = k.add([
-      k.text("", { size: 13, width: k.width() - 80, font: "monospace" }),
+      k.text("", { size: 14, width: k.width() - 80, font: "monospace" }),
       k.pos(k.width() / 2, k.height() - 80),
       k.anchor("center"),
       k.color(255, 255, 255),
@@ -229,8 +244,8 @@ export function initMainScene(k, navigate) {
     ]);
 
     const continuePrompt = k.add([
-      k.text("▼", { size: 16 }),
-      k.pos(k.width() - 40, k.height() - 25),
+      k.text("▼ TAP or SPACE", { size: 16 }),
+      k.pos(k.width() / 2, k.height() - 20),
       k.anchor("center"),
       k.color(255, 255, 100),
       k.z(101),
@@ -255,49 +270,51 @@ export function initMainScene(k, navigate) {
         continuePrompt.opacity = 1;
         dialogueText.text = currentDialogue[dialogueIndex];
       } else {
+        const npcToReward = currentNpc;
         hideDialogue();
-        if (currentNpc) {
-          const npcData = npcDialogues[currentNpc];
+        
+        if (npcToReward) {
+          const npcData = npcDialogues[npcToReward];
           const skillKey = npcData.skillReward;
           if (!collectedSkills.has(skillKey)) {
             collectedSkills.add(skillKey);
             updateSkillsDisplay();
             const skill = skills[skillKey];
             
-            const popup = k.add([
-              k.rect(200, 80),
+            k.add([
+              k.rect(220, 90),
               k.pos(k.width() / 2, k.height() / 2 - 100),
               k.anchor("center"),
               k.color(255, 215, 0),
               k.outline(4, k.rgb(200, 150, 0)),
               k.z(200),
               k.fixed(),
+              k.opacity(1),
+              k.lifespan(2.5, { fade: 0.5 }),
             ]);
 
             k.add([
-              k.text(`${skill.icon}`, { size: 32 }),
+              k.text(`${skill.icon}`, { size: 36 }),
               k.pos(k.width() / 2, k.height() / 2 - 115),
               k.anchor("center"),
               k.z(201),
-              k.lifespan(2),
               k.fixed(),
+              k.opacity(1),
+              k.lifespan(2.5, { fade: 0.5 }),
             ]);
 
             k.add([
-              k.text(skill.name, { size: 16, font: "monospace" }),
-              k.pos(k.width() / 2, k.height() / 2 - 85),
+              k.text(skill.name, { size: 18, font: "monospace" }),
+              k.pos(k.width() / 2, k.height() / 2 - 90),
               k.anchor("center"),
               k.color(0, 0, 0),
               k.z(201),
-              k.lifespan(2),
               k.fixed(),
+              k.opacity(1),
+              k.lifespan(2.5, { fade: 0.5 }),
             ]);
-
-            k.wait(2, () => {
-              k.destroy(popup);
-            });
           }
-          npcs.find(n => n.npcKey === currentNpc).talked = true;
+          npcs.find(n => n.npcKey === npcToReward).talked = true;
         }
       }
     }
@@ -330,35 +347,55 @@ export function initMainScene(k, navigate) {
       }
     });
 
-    k.onClick(() => {
+    k.onMousePress(() => {
       if (currentDialogue) {
         advanceDialogue();
       } else {
         npcs.forEach(npc => {
           const mousePos = k.mousePos();
-          if (mousePos.dist(npc.pos) < 40) {
+          if (mousePos.dist(npc.pos) < 50) {
             showDialogue(npc.npcKey);
           }
         });
       }
     });
 
-    let touchStartPos = null;
-    let isTouching = false;
+    let moveX = 0;
+    let moveY = 0;
 
     k.onTouchStart((id, pos) => {
-      touchStartPos = pos;
-      isTouching = true;
+      if (currentDialogue) {
+        advanceDialogue();
+      }
+    });
+
+    k.onTouchMove((id, pos) => {
+      if (!currentDialogue) {
+        const touchPos = k.toWorld(pos);
+        const diff = touchPos.sub(playerCollision.pos);
+        
+        if (diff.len() > 30) {
+          moveX = diff.x;
+          moveY = diff.y;
+          const len = Math.sqrt(moveX * moveX + moveY * moveY);
+          moveX /= len;
+          moveY /= len;
+        } else {
+          moveX = 0;
+          moveY = 0;
+        }
+      }
     });
 
     k.onTouchEnd(() => {
-      isTouching = false;
+      moveX = 0;
+      moveY = 0;
     });
 
     k.onUpdate(() => {
       if (continuePrompt.opacity > 0) {
         promptBlink += k.dt() * 4;
-        continuePrompt.opacity = Math.abs(Math.sin(promptBlink));
+        continuePrompt.opacity = 0.5 + Math.abs(Math.sin(promptBlink)) * 0.5;
       }
 
       playerX = playerCollision.pos.x;
@@ -383,37 +420,28 @@ export function initMainScene(k, navigate) {
       nameTag.pos.y = playerY - 25;
 
       if (!currentDialogue) {
-        let moveX = 0;
-        let moveY = 0;
+        let keyMoveX = 0;
+        let keyMoveY = 0;
 
-        if (k.isKeyDown("left") || k.isKeyDown("a")) moveX -= 1;
-        if (k.isKeyDown("right") || k.isKeyDown("d")) moveX += 1;
-        if (k.isKeyDown("up") || k.isKeyDown("w")) moveY -= 1;
-        if (k.isKeyDown("down") || k.isKeyDown("s")) moveY += 1;
+        if (k.isKeyDown("left") || k.isKeyDown("a")) keyMoveX -= 1;
+        if (k.isKeyDown("right") || k.isKeyDown("d")) keyMoveX += 1;
+        if (k.isKeyDown("up") || k.isKeyDown("w")) keyMoveY -= 1;
+        if (k.isKeyDown("down") || k.isKeyDown("s")) keyMoveY += 1;
 
-        if (isTouching && touchStartPos) {
-          const currentTouchPos = k.mousePos();
-          const diff = currentTouchPos.sub(touchStartPos);
-          if (diff.len() > 20) {
-            moveX = diff.x;
-            moveY = diff.y;
-            const len = Math.sqrt(moveX * moveX + moveY * moveY);
-            moveX /= len;
-            moveY /= len;
-          }
+        const finalMoveX = keyMoveX || moveX;
+        const finalMoveY = keyMoveY || moveY;
+
+        if (finalMoveX !== 0 || finalMoveY !== 0) {
+          playerCollision.move(finalMoveX * SPEED, finalMoveY * SPEED);
         }
 
-        if (moveX !== 0 || moveY !== 0) {
-          playerCollision.move(moveX * SPEED, moveY * SPEED);
-        }
-
-        playerCollision.pos.x = Math.max(20, Math.min(k.width() - 20, playerCollision.pos.x));
-        playerCollision.pos.y = Math.max(20, Math.min(k.height() - 20, playerCollision.pos.y));
+        playerCollision.pos.x = Math.max(20, Math.min(worldWidth - 20, playerCollision.pos.x));
+        playerCollision.pos.y = Math.max(20, Math.min(worldHeight - 20, playerCollision.pos.y));
       }
     });
 
     k.add([
-      k.text("* Talk to everyone to collect all skills!", { size: 12, font: "monospace" }),
+      k.text("* Talk to everyone to collect all skills!", { size: 14, font: "monospace" }),
       k.pos(k.width() / 2, 30),
       k.anchor("center"),
       k.color(255, 255, 255),

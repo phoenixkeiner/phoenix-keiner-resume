@@ -79,9 +79,9 @@ export const npcDialogues = {
 };
 
 export const npcPositions = {
-  university: { x: 200, y: 200 },
-  school: { x: 400, y: 200 },
-  annies: { x: 200, y: 400 },
-  revive: { x: 600, y: 300 },
-  certifications: { x: 400, y: 500 }
+  university: { x: 300, y: 150 },
+  school: { x: 150, y: 300 },
+  annies: { x: 450, y: 300 },
+  revive: { x: 300, y: 450 },
+  certifications: { x: 300, y: 650 }
 };
