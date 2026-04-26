@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import Nav from './components/nav.jsx'
-import Game from './game/Game.jsx'
 import Hero from './components/Hero.jsx'
+
+const Game = lazy(() => import('./game/Game.jsx'))
 import Experience from './components/Experience.jsx'
 import Skills from './components/Skills.jsx'
 import Education from './components/Education.jsx'
@@ -31,7 +32,7 @@ export default function App() {
     >
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/game" element={<Game />} />
+        <Route path="/game" element={<Suspense fallback={null}><Game /></Suspense>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>

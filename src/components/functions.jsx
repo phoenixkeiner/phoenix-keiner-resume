@@ -1,79 +1,26 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { personalInfo } from './data';
-import faceImage from '../images/face.jpg';
-import * as SocialIcons from './SocialIcons.jsx';
+import React from 'react'
+import { motion } from 'framer-motion'
+
+export function SectionHeading({ children }) {
+  return (
+    <motion.h2
+      className="text-3xl font-bold bg-gradient-to-r from-brand-blue to-brand-orange bg-clip-text text-transparent"
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {children}
+    </motion.h2>
+  )
+}
 
 export function SocialLink({ icon: Icon, ...props }) {
   return (
-      <a className="group -m-1 p-1" {...props} target="_blank" rel="noopener noreferrer">
-          <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600" />
-      </a>
-  );
-}
-
-export const Intro = () => {
-  return (
-    <div className="flex flex-col items-center md:flex-row md:items-start md:justify-start pt-2">
-      <img
-        alt="My beautiful face"
-        width="512"
-        height="512"
-        className="rounded-full bg-zinc-100 object-cover h-16 w-16 md:h-32 md:w-32 border-4 border-[#eee8aa] shadow-glow"
-        style={{ color: 'transparent' }}
-        sizes="4rem"
-        src={faceImage}
-      />
-      <div className="md:ml-4 mt-4 md:mt-0">
-        <h1 className="text-4xl font-bold mt-8">{personalInfo.name}</h1>
-        <h3 className="text-base font-semibold mb-8 tracking-tight text-gray-600">{personalInfo.email}</h3>
-        <FadeInOnScroll>
-          <p className="text-xl">{personalInfo.description}</p>
-        </FadeInOnScroll>
-        <div className="flex justify-center space-x-4 mt-4 md:justify-start">
-          <SocialLink
-            href="https://github.com/phoenixkeiner/"
-            aria-label="Follow on GitHub"
-            icon={SocialIcons.GitHubIcon}
-          />
-          <SocialLink
-            href="https://www.linkedin.com/in/phoenix-keiner/"
-            aria-label="Follow on LinkedIn"
-            icon={SocialIcons.LinkedInIcon}
-          />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export function FadeInOnScroll({ children }) {
-  const ref = useRef();
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const element = ref.current;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.1 }
-    );
-    if (element) {
-      observer.observe(element);
-    }
-    return () => {
-      if (element) observer.unobserve(element);
-    };
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className={`transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
-    >
-      {children}
-    </div>
-  );
+    <a className="group -m-1 p-1" {...props} target="_blank" rel="noopener noreferrer">
+      <Icon className="h-6 w-6 fill-brand-blue/50 transition group-hover:fill-brand-blue" />
+    </a>
+  )
 }
 
 export function ChevronRightIcon(props) {
@@ -86,99 +33,62 @@ export function ChevronRightIcon(props) {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 }
 
 export function Card({ as, className, children }) {
-  const Component = as ?? 'div';
-  const combinedClassName = `group relative flex flex-col items-start ${className}`;
-
+  const Component = as ?? 'div'
   return (
-    <Component className={combinedClassName}>
+    <Component className={`group relative flex flex-col items-start bg-white rounded-xl border border-brand-blue/10 shadow-sm p-5 ${className ?? ''}`}>
       {children}
     </Component>
-  );
+  )
 }
 
 export function CardTitle({ as, href, children }) {
-  const Component = as ?? 'h2';
-  const titleClassName = "text-base font-semibold tracking-tight text-gray-600";
-
+  const Component = as ?? 'h2'
   return (
-    <Component className={titleClassName}>
-      {href ? (
-        <a href={href} className="relative z-10">
-          {children}
-        </a>
-      ) : (
-        children
-      )}
+    <Component className="text-base font-semibold tracking-tight text-brand-dark">
+      {href ? <a href={href} className="relative z-10">{children}</a> : children}
     </Component>
-  );
+  )
 }
 
 export function CardDescription({ children }) {
   return (
-    <div className="relative z-10 mt-2 text-sm text-gray-600">
+    <div className="relative z-10 mt-2 text-sm text-brand-dark/70">
       {children}
     </div>
-  );
+  )
 }
 
 export function CardCta({ children }) {
   return (
-    <div aria-hidden="true" className="relative z-10 mt-4 flex items-center text-sm font-medium text-gray-600">
+    <div aria-hidden="true" className="relative z-10 mt-4 flex items-center text-sm font-medium text-brand-blue">
       {children}
       <ChevronRightIcon className="ml-1 h-4 w-4 stroke-current" />
     </div>
-  );
+  )
 }
 
 export function CardEyebrow({ as, decorate = false, className, children, ...props }) {
-  const Component = as ?? 'p';
-  const eyebrowClassName = `relative z-10 order-first mb-3 flex items-center text-sm text-gray-600 ${className}`;
-
+  const Component = as ?? 'p'
   return (
-    <Component className={eyebrowClassName} {...props}>
+    <Component className={`relative z-10 order-first mb-2 flex items-center text-brand-blue ${className ?? ''}`} {...props}>
       {decorate && (
         <span className="absolute inset-y-0 left-0 flex items-center" aria-hidden="true">
-          <span className="h-4 w-0.5 rounded-full bg-zinc-200" />
+          <span className="h-4 w-0.5 rounded-full bg-brand-blue/30" />
         </span>
       )}
       {children}
     </Component>
-  );
+  )
 }
 
-export const ExperienceItem = ({ date, role, company, responsibilities }) => {
+export function ContentCardDescription({ children }) {
   return (
-    <FadeInOnScroll>
-      <div className="flex">
-        <div className="w-1/4 pr-4">
-          <p className="text-lg font-semibold">{date}</p>
-          <p className="text-sm text-gray-600 italic">{role}</p>
-        </div>
-        <div className="w-3/4">
-          <h3 className="text-xl font-semibold">{company}</h3>
-          <CardDescription>
-            <ul className="list-disc ml-5">
-              {responsibilities.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-          </CardDescription>
-        </div>
-      </div>
-    </FadeInOnScroll>
-  );
-};
-
-export const ContentCardDescription = ({ children }) => {
-  return (
-    <FadeInOnScroll>
-      <div className="border-transparent p-4 bg-transparent rounded-md">
-        {children}
-      </div>
-    </FadeInOnScroll>
-  );
-};
+    <div className="mt-2 text-sm text-brand-dark/70 leading-relaxed">
+      {children}
+    </div>
+  )
+}

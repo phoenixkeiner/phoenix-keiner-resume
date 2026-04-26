@@ -2,25 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes gradient-animation {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-}
-
-.animate-gradient {
-    background-size: 400% 400%;
-    animation: gradient-animation 15s ease infinite;
+html {
+  scroll-behavior: smooth;
 }
 
 @layer utilities {
   .shadow-glow {
-    box-shadow: 0 0 10px rgba(238, 232, 170, 0.7), 0 0 20px rgba(238, 232, 170, 0.5);
+    box-shadow: 0 0 14px rgba(241, 153, 83, 0.5), 0 0 30px rgba(241, 153, 83, 0.2);
   }
 }
