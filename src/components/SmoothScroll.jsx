@@ -23,7 +23,7 @@ export default function SmoothScroll({ children }) {
     lenisRef.current = lenis
 
     const snapToNearest = () => {
-      const sections = Array.from(document.querySelectorAll('section:not(#qualifications)'))
+      const sections = Array.from(document.querySelectorAll('section:not(#qualifications):not(#hero)'))
       if (!sections.length) return
 
       const target = lenis.targetScroll

@@ -13,7 +13,7 @@ export default function Hero() {
   const [first, last] = personalInfo.name.split(' ')
 
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-brand-mint">
+    <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden bg-brand-mint">
       <div className="max-w-6xl mx-auto px-6 w-full flex flex-col md:flex-row items-center gap-12 md:gap-20">
         <motion.div className="flex-shrink-0" style={{ y: imageY }}>
           <motion.div
