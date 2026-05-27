@@ -30,11 +30,11 @@ export default function Experience() {
               <span className="text-xs text-brand-dark/50 italic">{exp.role}</span>
             </div>
             <h3 className="text-lg font-semibold text-brand-dark mb-2">{exp.company}</h3>
-            <ul className="list-disc ml-5 text-sm text-brand-dark/70 space-y-1.5">
-              {exp.responsibilities.map((item, j) => (
-                <li key={j}>{item}</li>
+            <div className="text-sm text-brand-dark/70 space-y-3">
+              {(exp.paragraphs || []).map((item, j) => (
+                <p key={j}>{item}</p>
               ))}
-            </ul>
+            </div>
           </motion.div>
         ))}
       </motion.div>

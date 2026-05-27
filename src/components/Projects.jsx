@@ -24,7 +24,13 @@ export default function Projects() {
             transition={{ type: 'spring', stiffness: 300 }}
           >
             <Card>
-              <CardTitle>{project.title}</CardTitle>
+              <CardTitle>
+                {project.url ? (
+                  <a href={project.url} target="_blank" rel="noopener noreferrer" className="text-brand-blue hover:text-brand-orange transition-colors underline underline-offset-2">
+                    {project.title}
+                  </a>
+                ) : project.title}
+              </CardTitle>
               <ContentCardDescription>{project.description}</ContentCardDescription>
             </Card>
           </motion.div>

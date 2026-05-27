@@ -1,57 +1,76 @@
 export const personalInfo = {
   name: "Phoenix Keiner",
-  title: "Web Developer & System Specialist",
+  title: "Full Stack Developer & Systems Integration Engineer",
   email: "keinerphoenix@gmail.com",
-  description: "Phoenix Keiner is a skilled web developer and system specialist based in Fort Wayne, IN, with a strong foundation in both front-end and back-end development. Currently employed at Revive Home Brands, he specializes in system integration across ERP, SQL databases, WordPress and Laravel platforms while building custom solutions with Go, Python and React. With expertise in technologies like Adobe Magento, C# and Laravel, Phoenix effectively addresses complex technical challenges including PHP 8.2 and Red Hat 8.0 infrastructure upgrades. He plays a key role in implementing analytics solutions with Google Analytics 4 and Microsoft Clarity, while automating workflows to enable data-driven decision-making. His experience extends beyond coding; he adeptly manages system integration projects, introduces Agile processes and collaborates with teams to optimize performance. A former technology teacher, he integrates educational principles into his development work, fostering a collaborative environment. With certifications in Data Analytics and a passion for mixed martial arts, Phoenix combines technical expertise with a commitment to continuous learning and growth.",
+  description: "Results-driven Full Stack Developer and Systems Integration Engineer with 6+ years of experience building scalable web applications, automating enterprise workflows, and integrating ERP systems. Proven track record of eliminating significant manual overhead through custom database tooling, API integrations, and analytics pipelines. Available for contract engagements.",
 }
 
 export const techSkills = [
-  "PHP", "Laravel", "React", "Go", "Python", "SQL",
-  "JavaScript", "C#", "Java", "HTML", "CSS",
-  "Magento", "WordPress", "Git", "PowerShell",
-  "Google Analytics", "MySQL", "Agile",
+  "PHP", "Python", "Go", "JavaScript", "TypeScript", "SQL", "PowerShell", "C#", "HTML", "CSS",
+  "Laravel", "Vue.js", "React", "Next.js", "Node.js", "Express.js", "Tailwind CSS",
+  "MySQL", "PostgreSQL", "SQLite", "MongoDB", "Microsoft SQL Server",
+  "Azure", "AWS", "Red Hat Linux", "Docker", "CI/CD",
+  "Google Analytics 4", "Google Tag Manager", "Google Search Console", "Microsoft Clarity", "Power BI", "SEO",
+  "Innergy ERP", "NetSuite", "Adobe Commerce", "Monday.com",
+  "Git", "REST APIs", "Test-driven Development", "Agile", "Jupyter Notebook", "Prophet",
 ]
 
 export const experiences = [
   {
-    date: "Jan. 2025 - Present",
-    role: "System Specialist",
-    company: "Revive Home Brands, Grabill, IN",
-    responsibilities: [
-      "Lead system integration initiatives across ERP, SQL databases, WordPress websites and internal Laravel-based intranet to centralize data and streamline workflows.",
-      "Built a custom intranet dashboard using Laravel and React, delivering real-time KPIs with Python-driven analytics for leadership.",
-      "Created Golang-based microservices to send structured API data to custom WordPress plugins, improving customer experience and website performance.",
-      "Implemented Google Analytics 4 and Microsoft Clarity across WordPress properties for improved user tracking and behavior analysis.",
-      "Automated workflows and labor calculations with Go, PowerShell and Python, drastically reducing manual report generation and enabling data-driven decision-making.",
-      "Introduced Agile processes to internal IT, improving sprint planning, task tracking and interdepartmental collaboration.",
-      "Scripted in Go to fetch ERP API data and convert the data into a database for internal analytics posted on all TVs on the production floor and in-office.",
+    date: "Apr. 2026 - Present",
+    role: "Full Stack Developer",
+    company: "Messenger - Fort Wayne, IN",
+    paragraphs: [
+      "Architecting a Laravel REST API powering a Vue.js storefront template system for funeral home clients. Inventory is consolidated into a single centralized API and filtered dynamically per client via authentication keys, allowing new funeral home storefronts to be created from a single codebase without duplicating backend logic.",
+      "Implemented test-driven development using PHP Pest, ensuring code reliability and reducing regression risk across the application.",
+      "Optimized Thumbies.com, reducing initial page load time from 26 seconds to 6 seconds. Rebuilt legacy PHP finance reporting pages into modern interactive dashboards with CSV export and automated recurring reports using Python.",
+      "Collaborating with a team of 2 developers and 1 director on Microsoft Azure-hosted infrastructure.",
     ],
   },
   {
-    date: "May 2021 - Jan. 2025 (Full Time), Apr. 2025 - Present (Contract)",
+    date: "Jan. 2025 - Mar. 2026",
+    role: "System Specialist",
+    company: "Revive Home Brands - Grabill, IN",
+    paragraphs: [
+      "Built the company's entire internal technology stack by integrating Innergy ERP, NetSuite and Monday.com APIs into a custom Laravel and React intranet that serves every employee. The platform delivers real-time KPI dashboards, labor tracking, shipment management, color inventory auditing, and financial reporting from a single interface.",
+      "Replaced a manual monthly inventory process, previously a two-business-week effort done in Excel, with a concurrent-access database form that completes in under 10 hours. Built a paperless QC tracking system for the quality control department that auto-generates graphs, distributes scheduled reports and eliminates 60 hours of manual work per month.",
+      "Developed a Go microservice to retrieve structured ERP API data and push it to a custom WordPress plugin, extending site functionality and improving data flow between systems without impacting performance. Overhauled and launched dutchmade.com on a new WordPress theme, including project gallery, dealer portal, door style catalog and showroom finder.",
+      "Built Python forecasting pipelines using Prophet and Jupyter Notebook for production trend analysis, with output deployed to leadership screens and production-floor displays. Implemented Google Analytics 4 and Microsoft Clarity across WordPress properties for behavior tracking and funnel analysis.",
+      "Introduced Agile sprint methodology to internal IT, improving delivery speed, cross-departmental transparency and task accountability.",
+    ],
+  },
+  {
+    date: "Jan. 2025 - Apr. 2026 (Contract)",
+    role: "Contract Web Developer",
+    company: "Annie's Publishing - Fort Wayne, IN",
+    paragraphs: [
+      "Contracted to support the ongoing replatforming of Annie's eCommerce portfolio, consolidating 4 legacy Laravel websites into Adobe Commerce (Magento) as part of a broader modernization initiative.",
+      "Led the migration of the customer digital bookshelf from a legacy Laravel system into Magento, restoring access to missing products for customers and clearing a backlog of unresolved fulfillment issues. Responsible for maintaining and enhancing the Magento platform, including troubleshooting technical issues, implementing feature enhancements and ensuring a consistent user experience across properties.",
+      "Provided technical support across internal teams and customer issues, diagnosing and resolving platform problems to minimize downtime and maintain business continuity.",
+    ],
+  },
+  {
+    date: "May 2021 - Jan. 2025 (Full Time)",
     role: "Web Developer",
-    company: "Annie's Publishing, Fort Wayne, IN",
-    responsibilities: [
-      "Developed and maintained eCommerce platforms using Adobe Magento and Laravel for front-end and back-end needs.",
-      "Played a key role in PHP 8.2 and Red Hat 8.0 infrastructure upgrades.",
-      "Delivered daily promotional campaigns to ~1.25 million users via email.",
-      "Managed UI updates, content edits and documentation of websites with a focus on ADA compliance using AudioEye API.",
-      "Implemented Google Analytics 4 tracking solutions.",
-      "Wrote and optimized SQL queries using phpMyAdmin for site and database updates.",
-      "Worked closely with cross-functional teams using Agile sprints to execute marketing and product goals.",
-      "Acted as project manager on small-to-medium workflow initiatives.",
+    company: "Annie's Publishing - Fort Wayne, IN",
+    paragraphs: [
+      "Developed and maintained Adobe Commerce (Magento) eCommerce platforms supporting approximately 1.25 million daily promotional email recipients.",
+      "Led front-end development for the Annie's Attic website replatforming initiative, handling UI/UX refinement, content architecture and ADA compliance via AudioEye API.",
+      "Executed PHP 5.6 to 7.2 to 8.0 migrations across 20 sites using PHP CodeSniffer to identify and resolve compatibility issues. Contributed to PHP 8.2 and Red Hat 8.0 infrastructure upgrades and migrated MySQL 5.6 to 8.0 as part of a full-stack infrastructure upgrade.",
+      "Led the migration from Universal Analytics to Google Analytics 4 ahead of UA deprecation, created isolated dev and production environments in Google Tag Manager to prevent data contamination and ensure accurate traffic routing. Also managed the migration of hardcoded JavaScript tracking pixels to tag-based implementations, modernizing the company's data collection infrastructure.",
+      "Documented and led User Acceptance Testing (UAT) for the Adobe Magento platform migration. Led the adoption of ClickUp as the team's project management system, trained staff on the platform and restructured the web development workflow around Agile sprint methodology.",
+      "Wrote and optimized SQL queries via phpMyAdmin on AWS-hosted infrastructure for site updates, database maintenance and data reporting.",
     ],
   },
   {
     date: "Aug. 2018 - July 2020",
     role: "Technology Teacher",
-    company: "Saint Joseph Hessen Cassel, Fort Wayne, IN",
-    responsibilities: [
-      "Implemented lesson plans for K-8 following the Indiana state standards for computer science.",
-      "Taught units on data analytics, troubleshooting, HTML, Java, C#, web programming, Python/robotics & Office 365.",
-      "Coached the elementary and middle school Robotics team to 10th place at state finals.",
-      "Incorporated projects in collaboration with other teachers' lesson plans.",
-      "Composed a YouTube series for children during the COVID-19 pandemic.",
+    company: "Saint Joseph Hessen Cassel - Fort Wayne, IN",
+    paragraphs: [
+      "Designed and delivered K-8 computer science curriculum for 112 students, aligned with Indiana state standards. Lessons covered data analytics, HTML, web programming, Python, robotics and Office 365.",
+      "Coached the VEX Robotics team to a top-10 finish at Indiana state finals.",
+      "Collaborated with other teachers to integrate technology projects into their lesson plans.",
+      "During COVID-19, independently produced an educational YouTube video series to maintain learning continuity for students during the shift to remote instruction.",
     ],
   },
 ]
@@ -59,31 +78,30 @@ export const experiences = [
 export const education = [
   {
     date: "Apr. 2021",
-    institution: "University of Saint Francis, Fort Wayne, IN",
-    degree: "B.S. in Computer Information Systems, Minor in Music Technology",
+    institution: "University of Saint Francis - Fort Wayne, IN",
+    degree: "B.S. Computer Information Systems | Minor: Music Technology | Magna Cum Laude",
     details: [
-      "Graduated magna cum laude.",
-      "Band member for four years.",
-      "Roger Bacon Scholarship and Richard Lugar Scholarship recipient.",
+      "Roger Bacon & Richard Lugar Scholarship Recipient.",
     ],
   },
 ]
 
 export const qualifications = [
-  "Certificate in Data Analytics from Stanford.",
+  "Certificate in Data Analytics - Stanford University.",
   "Google Data Analytics Professional Certificate.",
-  "Proficiency in mixing and editing audio with Dolby Atmos.",
-  "Dedicated mixed martial artist.",
+  "Google Analytics 4 Certified.",
 ]
 
 export const projects = [
   {
-    title: "Technology Upgrade Project",
-    description: "Successfully led the comprehensive upgrade of PHP from version 5.6 to 7.2 across Annie's portfolio of approximately 20 websites, effectively addressing and resolving compatibility issues utilizing PHP CodeSniffer. I meticulously refactored the codebases to ensure seamless operation with PHP 7.2. Due to system limitations, I paused further upgrades until subsequent initiatives. In a follow-up project, I facilitated the upgrade to PHP 8.0 and orchestrated the transition of MySQL from version 5.6 to 8.0, strategically positioning the infrastructure for an operating system upgrade.",
+    title: "AntFarm",
+    url: "https://github.com/phoenixkeiner/AntFarm",
+    description: "Python-based ant colony optimization engine for mapping optimal machinery placement and routing on production floors. Supports parallel and sequential pathfinding modes, cart-size collision detection, real-time visualization, and CSV-based layout import. Built to solve an actual warehouse logistics problem.",
   },
   {
-    title: "Tag Manager and Google Analytics Projects",
-    description: "Played a pivotal role in the migration of hard-coded JavaScript tags and tracking pixels to Google Tag Manager, thereby modernizing the company's tagging infrastructure. Building on this foundation, I spearheaded the transition from Google Analytics Universal to GA4 ahead of the deprecation of UA. This initiative involved establishing distinct development and production environments to prevent data contamination and utilizing Google Tag Manager's environment features to ensure accurate traffic routing to the appropriate GA4 accounts.",
+    title: "BMT Notes",
+    url: "https://phoenixkeiner.github.io/bmt-notes",
+    description: "Deployed React application built for personal use during martial arts training. Demonstrates component architecture and React state management in a production-deployed context.",
   },
 ]
 

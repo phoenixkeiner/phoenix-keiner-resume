@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
+import { useLenis } from './SmoothScroll'
 
 const navLinks = [
   { label: 'Experience', href: '#experience' },
@@ -14,6 +15,7 @@ export default function Nav() {
   const [activeSection, setActiveSection] = useState('')
   const [scrolled, setScrolled] = useState(false)
   const dropdownRef = useRef(null)
+  const lenisRef = useLenis()
   const { scrollY, scrollYProgress } = useScroll()
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
@@ -49,7 +51,11 @@ export default function Nav() {
     <div className="sticky top-0 z-50">
       <nav className={`w-full flex items-center justify-between px-6 py-3 bg-brand-blue transition-shadow duration-300 ${scrolled ? 'shadow-lg' : ''}`}>
         <div className="flex items-center gap-6">
-          <Link to="/" className="text-white font-bold text-xl tracking-widest select-none">
+          <Link
+            to="/"
+            className="text-white font-bold text-xl tracking-widest select-none"
+            onClick={(e) => { e.preventDefault(); lenisRef?.current?.scrollTo(0, { duration: 1.2 }) }}
+          >
             PK
           </Link>
           <div className="hidden md:flex items-center">
@@ -80,7 +86,7 @@ export default function Nav() {
         <div className="flex items-center gap-3">
           <Link
             to="/game"
-            className="hidden sm:block px-4 py-2 bg-brand-orange hover:bg-brand-rust text-white text-sm font-medium rounded-md transition-colors"
+            className="px-4 py-2 bg-brand-orange hover:bg-brand-rust text-white text-sm font-medium rounded-md transition-colors"
           >
             Career Game
           </Link>
@@ -93,7 +99,7 @@ export default function Nav() {
               aria-expanded={isDropdownOpen}
               aria-haspopup="true"
             >
-              Work
+              Side Projects
               <svg className="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 01.02-1.06z" clipRule="evenodd" />
               </svg>
