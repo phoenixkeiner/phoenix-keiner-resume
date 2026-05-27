@@ -1,8 +1,7 @@
-import React from 'react'
 import { motion } from 'framer-motion'
 import { qualifications } from './data'
 import { fadeUp, staggerContainer, viewport } from '../utils/animations'
-import { SectionHeading, Card, ContentCardDescription } from './functions'
+import { SectionHeading, Card, CardDescription } from './ui'
 
 export default function Qualifications() {
   return (
@@ -18,13 +17,13 @@ export default function Qualifications() {
       >
         <motion.div variants={fadeUp}>
           <Card>
-            <ContentCardDescription>
+            <CardDescription>
               <ul className="list-disc ml-5 space-y-1.5">
                 {qualifications.map((q, i) => (
                   <li key={i}>{q}</li>
                 ))}
               </ul>
-            </ContentCardDescription>
+            </CardDescription>
           </Card>
         </motion.div>
       </motion.div>

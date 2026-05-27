@@ -1,8 +1,7 @@
-import React from 'react'
 import { motion } from 'framer-motion'
 import { techSkills } from './data'
 import { scaleIn, staggerFast, viewport } from '../utils/animations'
-import { SectionHeading } from './functions'
+import { SectionHeading } from './ui'
 
 export default function Skills() {
   return (

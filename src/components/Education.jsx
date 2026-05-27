@@ -1,8 +1,7 @@
-import React from 'react'
 import { motion } from 'framer-motion'
 import { education } from './data'
 import { fadeUp, staggerContainer, viewport } from '../utils/animations'
-import { SectionHeading, Card, CardEyebrow, ContentCardDescription } from './functions'
+import { SectionHeading, Card, CardEyebrow, CardDescription } from './ui'
 
 export default function Education() {
   return (
@@ -21,14 +20,14 @@ export default function Education() {
             <Card>
               <CardEyebrow className="text-lg font-semibold">{edu.date}</CardEyebrow>
               <h3 className="text-base font-semibold text-brand-dark/70">{edu.institution}</h3>
-              <ContentCardDescription>
+              <CardDescription>
                 <p className="mb-1">{edu.degree}</p>
                 <ul className="list-disc ml-5 space-y-0.5">
                   {edu.details.map((detail, j) => (
                     <li key={j}>{detail}</li>
                   ))}
                 </ul>
-              </ContentCardDescription>
+              </CardDescription>
             </Card>
           </motion.div>
         ))}

@@ -105,6 +105,3 @@ export const projects = [
   },
 ]
 
-export const socials = [
-  { icon: 'GitHubIcon', url: 'https://github.com/phoenixkeiner' },
-]

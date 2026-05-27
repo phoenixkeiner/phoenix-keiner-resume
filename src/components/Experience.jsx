@@ -1,8 +1,7 @@
-import React from 'react'
 import { motion } from 'framer-motion'
 import { experiences } from './data'
 import { fadeLeft, staggerContainer, viewport } from '../utils/animations'
-import { SectionHeading } from './functions'
+import { SectionHeading } from './ui'
 
 export default function Experience() {
   return (
@@ -31,7 +30,7 @@ export default function Experience() {
             </div>
             <h3 className="text-lg font-semibold text-brand-dark mb-2">{exp.company}</h3>
             <div className="text-sm text-brand-dark/70 space-y-3">
-              {(exp.paragraphs || []).map((item, j) => (
+              {exp.paragraphs.map((item, j) => (
                 <p key={j}>{item}</p>
               ))}
             </div>

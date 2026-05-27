@@ -1,8 +1,7 @@
-import React from 'react'
 import { motion } from 'framer-motion'
 import { projects } from './data'
 import { fadeUp, staggerContainer, viewport } from '../utils/animations'
-import { SectionHeading, Card, CardTitle, ContentCardDescription } from './functions'
+import { SectionHeading, Card, CardTitle, CardDescription } from './ui'
 
 export default function Projects() {
   return (
@@ -31,7 +30,7 @@ export default function Projects() {
                   </a>
                 ) : project.title}
               </CardTitle>
-              <ContentCardDescription>{project.description}</ContentCardDescription>
+              <CardDescription>{project.description}</CardDescription>
             </Card>
           </motion.div>
         ))}

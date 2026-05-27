@@ -1,8 +1,6 @@
 export const npcDialogues = {
   university: {
     name: "Professor Francis",
-    sprite: "professor",
-    color: [100, 150, 255],
     dialogues: [
       "Welcome to the University of Saint Francis!",
       "Phoenix graduated magna cum laude in April 2021 with a B.S. in Computer Information Systems and a minor in Music Technology.",
@@ -11,11 +9,9 @@ export const npcDialogues = {
     ],
     skillReward: "education"
   },
-  
+
   school: {
     name: "Principal Hessen",
-    sprite: "principal",
-    color: [255, 200, 100],
     dialogues: [
       "Hello! I'm from Saint Joseph Hessen Cassel.",
       "Phoenix was our Technology Teacher from August 2018 to July 2020.",
@@ -26,11 +22,9 @@ export const npcDialogues = {
     ],
     skillReward: "teaching"
   },
-  
+
   annies: {
     name: "Annie",
-    sprite: "annie",
-    color: [255, 150, 200],
     dialogues: [
       "Hey there! I'm Annie from Annie's Publishing.",
       "Phoenix worked here as a Web Developer from May 2021 to January 2025 full-time, and continues contract work starting April 2025.",
@@ -43,11 +37,9 @@ export const npcDialogues = {
     ],
     skillReward: "web_development"
   },
-  
+
   revive: {
     name: "Director Revive",
-    sprite: "director",
-    color: [150, 255, 150],
     dialogues: [
       "Welcome to Revive Home Brands!",
       "Phoenix joined us as a System Specialist in January 2025 and continues to this day.",
@@ -61,11 +53,9 @@ export const npcDialogues = {
     ],
     skillReward: "system_integration"
   },
-  
+
   certifications: {
     name: "Achievement Board",
-    sprite: "board",
-    color: [255, 215, 0],
     dialogues: [
       "Phoenix's Additional Qualifications:",
       "✓ Certificate in Data Analytics from Stanford",
@@ -76,12 +66,4 @@ export const npcDialogues = {
     ],
     skillReward: "certifications"
   }
-};
-
-export const npcPositions = {
-  university: { x: 300, y: 150 },
-  school: { x: 150, y: 300 },
-  annies: { x: 450, y: 300 },
-  revive: { x: 300, y: 450 },
-  certifications: { x: 300, y: 650 }
-};
+}

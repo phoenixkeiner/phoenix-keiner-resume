@@ -7,6 +7,8 @@ export function useLenis() {
   return useContext(LenisContext)
 }
 
+const easeExp = t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+
 export default function SmoothScroll({ children }) {
   const lenisRef = useRef(null)
 
@@ -20,13 +22,13 @@ export default function SmoothScroll({ children }) {
 
     lenisRef.current = lenis
 
-    const ease = t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-
     const snapToNearest = () => {
       const sections = Array.from(document.querySelectorAll('section:not(#qualifications)'))
       if (!sections.length) return
 
       const target = lenis.targetScroll
+      const threshold = window.innerHeight * 0.45
+
       let nearest = sections[0]
       let minDist = Infinity
 
@@ -38,17 +40,14 @@ export default function SmoothScroll({ children }) {
         }
       }
 
-      lenis.scrollTo(nearest.offsetTop, { duration: 1.2, easing: ease })
+      if (minDist <= threshold) {
+        lenis.scrollTo(nearest.offsetTop, { duration: 1.2, easing: easeExp })
+      }
     }
 
     let snapTimer
-    const scheduleSnap = (delay) => {
-      clearTimeout(snapTimer)
-      snapTimer = setTimeout(snapToNearest, delay)
-    }
-
-    const onWheel = () => scheduleSnap(150)
-    const onTouchEnd = () => scheduleSnap(300)
+    const onWheel = () => { clearTimeout(snapTimer); snapTimer = setTimeout(snapToNearest, 150) }
+    const onTouchEnd = () => { clearTimeout(snapTimer); snapTimer = setTimeout(snapToNearest, 300) }
 
     window.addEventListener('wheel', onWheel, { passive: true })
     window.addEventListener('touchend', onTouchEnd, { passive: true })

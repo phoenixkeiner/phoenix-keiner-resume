@@ -1,26 +1,29 @@
-import React, { lazy, Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import Nav from './components/nav.jsx'
 import Hero from './components/Hero.jsx'
-
-const Game = lazy(() => import('./game/Game.jsx'))
 import Experience from './components/Experience.jsx'
 import Skills from './components/Skills.jsx'
 import Education from './components/Education.jsx'
 import Qualifications from './components/Qualifications.jsx'
 import Projects from './components/Projects.jsx'
+import SmoothScroll from './components/SmoothScroll.jsx'
+
+const Game = lazy(() => import('./game/Game.jsx'))
 
 function HomePage() {
   return (
-    <div className="bg-brand-mint text-brand-dark">
-      <Nav />
-      <Hero />
-      <Experience />
-      <Skills />
-      <Education />
-      <Qualifications />
-      <Projects />
-    </div>
+    <SmoothScroll>
+      <div className="bg-brand-mint text-brand-dark">
+        <Nav />
+        <Hero />
+        <Experience />
+        <Skills />
+        <Education />
+        <Qualifications />
+        <Projects />
+      </div>
+    </SmoothScroll>
   )
 }
 

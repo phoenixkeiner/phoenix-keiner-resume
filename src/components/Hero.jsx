@@ -1,8 +1,7 @@
-import React from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { personalInfo } from './data'
 import faceImage from '../images/face.jpg'
-import { SocialLink } from './functions'
+import { SocialLink } from './ui'
 import * as SocialIcons from './SocialIcons'
 
 export default function Hero() {

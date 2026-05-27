@@ -29,11 +29,4 @@ export const skills = {
     icon: "🏆",
     color: [255, 215, 0]
   }
-};
-
-export const techSkills = [
-  "PHP", "Laravel", "React", "Go", "Python", "SQL", 
-  "JavaScript", "C#", "Java", "HTML", "CSS",
-  "Magento", "WordPress", "Git", "PowerShell",
-  "Google Analytics", "MySQL", "Agile"
-];
+}

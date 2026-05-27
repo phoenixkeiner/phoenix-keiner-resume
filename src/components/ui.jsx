@@ -1,4 +1,3 @@
-import React from 'react'
 import { motion } from 'framer-motion'
 
 export function SectionHeading({ children }) {
@@ -23,23 +22,10 @@ export function SocialLink({ icon: Icon, ...props }) {
   )
 }
 
-export function ChevronRightIcon(props) {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
-      <path
-        d="M6.75 5.75 9.25 8l-2.5 2.25"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
 export function Card({ as, className, children }) {
   const Component = as ?? 'div'
   return (
-    <Component className={`group relative flex flex-col items-start bg-white rounded-xl border border-brand-blue/10 shadow-sm p-5 ${className ?? ''}`}>
+    <Component className={`relative flex flex-col items-start bg-white rounded-xl border border-brand-blue/10 shadow-sm p-5 ${className ?? ''}`}>
       {children}
     </Component>
   )
@@ -51,23 +37,6 @@ export function CardTitle({ as, href, children }) {
     <Component className="text-base font-semibold tracking-tight text-brand-dark">
       {href ? <a href={href} className="relative z-10">{children}</a> : children}
     </Component>
-  )
-}
-
-export function CardDescription({ children }) {
-  return (
-    <div className="relative z-10 mt-2 text-sm text-brand-dark/70">
-      {children}
-    </div>
-  )
-}
-
-export function CardCta({ children }) {
-  return (
-    <div aria-hidden="true" className="relative z-10 mt-4 flex items-center text-sm font-medium text-brand-blue">
-      {children}
-      <ChevronRightIcon className="ml-1 h-4 w-4 stroke-current" />
-    </div>
   )
 }
 
@@ -85,7 +54,7 @@ export function CardEyebrow({ as, decorate = false, className, children, ...prop
   )
 }
 
-export function ContentCardDescription({ children }) {
+export function CardDescription({ children }) {
   return (
     <div className="mt-2 text-sm text-brand-dark/70 leading-relaxed">
       {children}
