@@ -91,21 +91,6 @@ export default function Hero() {
           </motion.div>
         </motion.div>
       </div>
-
-      <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.1, duration: 0.6 }}
-      >
-        <span className="text-xs text-brand-dark/30 tracking-widest uppercase">Scroll</span>
-        <motion.div
-          className="w-px h-10 bg-brand-dark/20"
-          style={{ transformOrigin: 'top' }}
-          animate={{ scaleY: [0, 1, 0] }}
-          transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
-        />
-      </motion.div>
     </section>
   )
 }
