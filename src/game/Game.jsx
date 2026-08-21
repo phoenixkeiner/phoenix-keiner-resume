@@ -34,11 +34,12 @@ export default function Game() {
       width: gameWidth,
       height: gameHeight,
       canvas: canvasRef.current,
-      background: [110, 185, 235],
+      background: [120, 175, 230],
       letterbox: false,
       stretch: false,
       debug: false,
       touchToMouse: false,
+      crisp: true,
     });
 
     globalGameInstance = k;
@@ -87,7 +88,7 @@ export default function Game() {
   }
 
   return (
-    <div className="min-h-screen bg-brand-dark flex flex-col items-center pt-4 px-2 pb-6 gap-3">
+    <div className="min-h-screen bg-brand-navy flex flex-col items-center pt-4 px-2 pb-6 gap-3">
       <div className="text-center">
         <h1 className="text-xl md:text-2xl font-bold text-white tracking-wide">
           Phoenix's Career Journey
