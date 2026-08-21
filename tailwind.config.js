@@ -8,8 +8,10 @@ module.exports = {
       colors: {
         brand: {
           blue:   '#2660a4',
+          navy:   '#163a5f',
           mint:   '#edf7f6',
           orange: '#f19953',
+          gold:   '#d9a441',
           rust:   '#c47335',
           dark:   '#1f1f1f',
         },

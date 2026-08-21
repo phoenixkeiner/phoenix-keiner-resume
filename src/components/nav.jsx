@@ -4,6 +4,7 @@ import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
 import { useLenis } from './SmoothScroll'
 
 const navLinks = [
+  { label: 'About', href: '#about' },
   { label: 'Experience', href: '#experience' },
   { label: 'Skills', href: '#skills' },
   { label: 'Education', href: '#education' },
@@ -107,7 +108,7 @@ export default function Nav() {
 
             {isDropdownOpen && (
               <div
-                className="absolute right-0 mt-2 w-52 rounded-md bg-brand-dark shadow-lg ring-1 ring-black/10"
+                className="absolute right-0 mt-2 w-52 rounded-md bg-brand-navy shadow-lg ring-1 ring-black/10"
                 role="menu"
                 aria-orientation="vertical"
               >

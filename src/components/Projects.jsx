@@ -16,12 +16,7 @@ export default function Projects() {
         viewport={viewport}
       >
         {projects.map((project, i) => (
-          <motion.div
-            key={i}
-            variants={fadeUp}
-            whileHover={{ y: -4 }}
-            transition={{ type: 'spring', stiffness: 300 }}
-          >
+          <motion.div key={i} variants={fadeUp}>
             <Card>
               <CardTitle>
                 {project.url ? (

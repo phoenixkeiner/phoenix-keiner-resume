@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { personalInfo } from './data'
 import faceImage from '../images/face.jpg'
-import { SocialLink } from './ui'
+import { SocialLink, Typewriter } from './ui'
 import * as SocialIcons from './SocialIcons'
 
 export default function Hero() {
@@ -30,7 +30,7 @@ export default function Hero() {
               <img src={faceImage} alt="Phoenix Keiner" className="w-full h-full object-cover" />
             </motion.div>
             <motion.div
-              className="absolute inset-0 rounded-full border-4 border-brand-orange/30 pointer-events-none"
+              className="absolute inset-0 rounded-full border-4 border-brand-gold/40 pointer-events-none"
               animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0, 0.5] }}
               transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut' }}
             />
@@ -63,12 +63,12 @@ export default function Hero() {
           </div>
 
           <motion.p
-            className="text-lg md:text-xl font-medium text-brand-dark/70 mb-2"
+            className="text-lg md:text-xl font-medium text-brand-dark/70 mb-2 min-h-[1.75em]"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.35 }}
           >
-            {personalInfo.title}
+            <Typewriter words={personalInfo.roles} />
           </motion.p>
 
           <motion.p

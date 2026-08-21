@@ -1,6 +1,7 @@
 export const personalInfo = {
   name: "Phoenix Keiner",
   title: "Full Stack Developer & Systems Integration Engineer",
+  roles: ["Full Stack Developer", "Systems Integration Engineer", "ERP Integration Engineer", "Web Developer"],
   email: "keinerphoenix@gmail.com",
   description: "Results-driven Full Stack Developer and Systems Integration Engineer with 6+ years of experience building scalable web applications, automating enterprise workflows, and integrating ERP systems. Proven track record of eliminating significant manual overhead through custom database tooling, API integrations, and analytics pipelines. Available for contract engagements.",
 }
