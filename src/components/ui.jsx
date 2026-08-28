@@ -76,6 +76,24 @@ export function CardDescription({ children }) {
   )
 }
 
+export function ExternalLinkIcon({ className }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M7 17 17 7" />
+      <path d="M9 7h8v8" />
+    </svg>
+  )
+}
+
 export function Typewriter({ words, className }) {
   const [reducedMotion, setReducedMotion] = useState(false)
   const [wordIndex, setWordIndex] = useState(0)

@@ -16,6 +16,10 @@ module.exports = {
           dark:   '#1f1f1f',
         },
       },
+      fontFamily: {
+        sans: ['"Geist"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+      },
     },
   },
   plugins: [],

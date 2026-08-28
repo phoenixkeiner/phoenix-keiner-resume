@@ -1,6 +1,8 @@
 import { npcDialogues } from '../data/npcs';
 import { skills } from '../data/skills';
-import playerSprite from '../assets/player.png';
+import gmonoFont from '@fontsource/geist-mono/files/geist-mono-latin-500-normal.woff2?url';
+import playerSpriteA from '../assets/player.png';
+import playerSpriteB from '../assets/player_alt.png';
 import universitySprite from '../assets/npc_university.png';
 import schoolSprite from '../assets/npc_school.png';
 import anniesSprite from '../assets/npc_annies.png';
@@ -29,7 +31,13 @@ function loadCharSprite(k, name, url) {
   });
 }
 
-export function initMainScene(k, navigate, joystickRef, interactRef) {
+export const playerCharacters = {
+  man: { label: 'Man', sprite: playerSpriteB },
+  woman: { label: 'Woman', sprite: playerSpriteA },
+};
+
+export function initMainScene(k, navigate, joystickRef, interactRef, characterKey) {
+  const playerSprite = playerCharacters[characterKey]?.sprite ?? playerCharacters.man.sprite;
   loadCharSprite(k, 'player', playerSprite);
   loadCharSprite(k, 'npc_university', universitySprite);
   loadCharSprite(k, 'npc_school', schoolSprite);
@@ -38,6 +46,10 @@ export function initMainScene(k, navigate, joystickRef, interactRef) {
   k.loadSprite('tile_ground', groundTile);
   k.loadSprite('tile_tree_teal', treeTealTile);
   k.loadSprite('tile_tree_orange', treeOrangeTile);
+  k.loadFont('gmono', gmonoFont);
+
+  const prefersReducedMotion = typeof window !== 'undefined'
+    && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   k.scene('main', () => {
     const SPEED = 120;
@@ -115,11 +127,13 @@ export function initMainScene(k, navigate, joystickRef, interactRef) {
       [W * 0.18, SKY_H + H * 0.62, 0.7, 'teal'], [W * 0.82, SKY_H + H * 0.65, 0.75, 'orange'],
     ].forEach(([tx, ty, sc, kind]) => addTree(tx, ty, sc, kind));
 
+    const particles = [];
     for (let i = 0; i < 26; i++) {
       const fx = W * 0.12 + Math.random() * W * 0.76;
       const fy = SKY_H + 10 + Math.random() * (H - SKY_H - 14);
       const fc = [ORANGE, GOLD, BLUE, [235, 120, 150]][Math.floor(Math.random() * 4)];
-      k.add([k.circle(3.5), k.pos(fx, fy), k.color(fc[0], fc[1], fc[2]), k.opacity(0.85), k.anchor('center'), k.z(-3)]);
+      const obj = k.add([k.circle(3.5), k.pos(fx, fy), k.color(fc[0], fc[1], fc[2]), k.opacity(0.85), k.anchor('center'), k.z(-3)]);
+      particles.push({ obj, baseX: fx, baseY: fy, phase: Math.random() * Math.PI * 2, speed: 0.35 + Math.random() * 0.35 });
     }
 
     const centerX = W / 2;
@@ -154,7 +168,7 @@ export function initMainScene(k, navigate, joystickRef, interactRef) {
     }
 
     const player = makeCharObj('player', px, py, Math.floor(py));
-    const pTag = k.add([k.text('Phoenix', { size: 11, font: 'monospace' }), k.pos(px, py + LABEL_Y), k.color(255, 255, 255), k.anchor('center'), k.outline(2, k.rgb(0, 0, 0)), k.opacity(1), k.z(800)]);
+    const pTag = k.add([k.text('Phoenix', { size: 11, font: 'gmono' }), k.pos(px, py + LABEL_Y), k.color(255, 255, 255), k.anchor('center'), k.outline(2, k.rgb(0, 0, 0)), k.opacity(1), k.z(800)]);
 
     const npcSpriteFor = {
       university: 'npc_university',
@@ -178,22 +192,42 @@ export function initMainScene(k, navigate, joystickRef, interactRef) {
       const bobPhase = Math.random() * Math.PI * 2;
       const { obj, shadow } = makeCharObj(npcSpriteFor[key], pos.x, pos.y, Math.floor(pos.y));
 
-      const label = k.add([k.text(nd.name, { size: 11, font: 'monospace' }), k.pos(pos.x, pos.y + LABEL_Y), k.anchor('center'), k.color(255, 255, 255), k.outline(2, k.rgb(0, 0, 0)), k.z(800)]);
-      const bang = k.add([k.text('!', { size: 20, font: 'monospace' }), k.pos(pos.x, pos.y - 62), k.anchor('center'), k.color(GOLD[0], GOLD[1], GOLD[2]), k.outline(2, k.rgb(0, 0, 0)), k.z(801), k.opacity(0)]);
-      const check = k.add([k.text('✓', { size: 15, font: 'monospace' }), k.pos(pos.x + 18, pos.y - 28), k.anchor('center'), k.color(120, 220, 150), k.outline(2, k.rgb(0, 0, 0)), k.z(801), k.opacity(0)]);
+      const label = k.add([k.text(nd.name, { size: 11, font: 'gmono' }), k.pos(pos.x, pos.y + LABEL_Y), k.anchor('center'), k.color(255, 255, 255), k.outline(2, k.rgb(0, 0, 0)), k.z(800)]);
+      const bangBg = k.add([k.circle(11), k.pos(pos.x, pos.y - 62), k.anchor('center'), k.color(NAVY[0], NAVY[1], NAVY[2]), k.outline(2, k.rgb(GOLD[0], GOLD[1], GOLD[2])), k.z(800), k.opacity(0)]);
+      const bang = k.add([k.text('!', { size: 15, font: 'gmono' }), k.pos(pos.x, pos.y - 62), k.anchor('center'), k.color(GOLD[0], GOLD[1], GOLD[2]), k.z(801), k.opacity(0)]);
+      const check = k.add([k.text('✓', { size: 15, font: 'gmono' }), k.pos(pos.x + 18, pos.y - 28), k.anchor('center'), k.color(120, 220, 150), k.outline(2, k.rgb(0, 0, 0)), k.z(801), k.opacity(0)]);
 
-      npcs.push({ key, baseX: pos.x, baseY: pos.y, bobPhase, talked: false, obj, shadow, label, bang, check });
+      npcs.push({ key, baseX: pos.x, baseY: pos.y, bobPhase, talked: false, obj, shadow, label, bangBg, bang, check });
     });
 
+    const SKILL_KEYS = Object.keys(skills);
+    const PIP_GAP = 15;
+    const PIP_START_X = 60;
+    const hudChipW = PIP_START_X + (SKILL_KEYS.length - 1) * PIP_GAP + 18;
     const hudChip = k.add([
-      k.rect(96, 24, { radius: 6 }),
+      k.rect(hudChipW, 26, { radius: 8 }),
       k.pos(8, 8),
       k.color(NAVY[0], NAVY[1], NAVY[2]),
-      k.opacity(0.85),
+      k.opacity(0.88),
       k.fixed(),
       k.z(900),
     ]);
-    const skillsHUD = k.add([k.text('Skills: 0/5', { size: 12, font: 'monospace' }), k.pos(18, 14), k.color(GOLD[0], GOLD[1], GOLD[2]), k.fixed(), k.z(901)]);
+    k.add([k.text('Skills', { size: 10, font: 'gmono' }), k.pos(16, 15), k.anchor('left'), k.color(255, 255, 255), k.opacity(0.55), k.fixed(), k.z(901)]);
+    const skillPips = SKILL_KEYS.map((key, i) => {
+      const skill = skills[key];
+      const [r, g, b] = skill.color;
+      return k.add([
+        k.circle(5),
+        k.scale(1),
+        k.pos(PIP_START_X + i * PIP_GAP, 21),
+        k.anchor('center'),
+        k.color(r, g, b),
+        k.outline(1, k.rgb(255, 255, 255)),
+        k.opacity(0.28),
+        k.fixed(),
+        k.z(901),
+      ]);
+    });
     k.add([
       k.rect(160, 20, { radius: 10 }),
       k.pos(W / 2, 8),
@@ -203,28 +237,47 @@ export function initMainScene(k, navigate, joystickRef, interactRef) {
       k.fixed(),
       k.z(900),
     ]);
-    k.add([k.text('Talk to everyone!', { size: 10, font: 'monospace' }), k.pos(W / 2, 12), k.anchor('top'), k.color(255, 255, 255), k.fixed(), k.z(901)]);
+    k.add([k.text('Talk to everyone!', { size: 10, font: 'gmono' }), k.pos(W / 2, 12), k.anchor('top'), k.color(255, 255, 255), k.fixed(), k.z(901)]);
 
-    const DH = 128;
+    const DH = 136;
     const DY = H - DH / 2 - 10;
-    const dlgOuter = k.add([k.rect(W - 18, DH, { radius: 12 }), k.pos(W / 2, DY), k.anchor('center'), k.color(NAVY[0], NAVY[1], NAVY[2]), k.z(900), k.fixed(), k.opacity(0)]);
+    const PORTRAIT_SIZE = 56;
+    const PORTRAIT_X = 20 + PORTRAIT_SIZE / 2;
+    const TEXT_X = PORTRAIT_X + PORTRAIT_SIZE / 2 + 14;
+    const MAX_DOTS = 9;
+
+    const dlgOuter = k.add([k.rect(W - 18, DH, { radius: 14 }), k.pos(W / 2, DY), k.anchor('center'), k.scale(1), k.color(NAVY[0], NAVY[1], NAVY[2]), k.z(900), k.fixed(), k.opacity(0)]);
     const dlgAccent = k.add([k.rect(W - 18, 4, { radius: 2 }), k.pos(W / 2, DY - DH / 2 + 2), k.anchor('center'), k.color(ORANGE[0], ORANGE[1], ORANGE[2]), k.z(901), k.fixed(), k.opacity(0)]);
-    const dlgName  = k.add([k.text('', { size: 11, font: 'monospace' }), k.pos(20, DY - DH / 2 + 11), k.color(ORANGE[0], ORANGE[1], ORANGE[2]), k.z(902), k.fixed(), k.opacity(0)]);
-    const dlgText  = k.add([k.text('', { size: 12, width: W - 55, font: 'monospace' }), k.pos(W / 2, DY + 10), k.anchor('center'), k.color(CREAM[0], CREAM[1], CREAM[2]), k.z(902), k.fixed(), k.opacity(0)]);
-    const dlgNext  = k.add([k.text('▼', { size: 13, font: 'monospace' }), k.pos(W - 18, H - 13), k.anchor('center'), k.color(GOLD[0], GOLD[1], GOLD[2]), k.z(902), k.fixed(), k.opacity(0)]);
+    const dlgPortraitBg = k.add([k.rect(PORTRAIT_SIZE, PORTRAIT_SIZE, { radius: 10 }), k.pos(PORTRAIT_X, DY), k.anchor('center'), k.color(BLUE[0], BLUE[1], BLUE[2]), k.outline(2, k.rgb(ORANGE[0], ORANGE[1], ORANGE[2])), k.z(901), k.fixed(), k.opacity(0)]);
+    const dlgPortrait = k.add([k.sprite('player', { frame: 0 }), k.pos(PORTRAIT_X, DY + 5), k.anchor('center'), k.scale(2.5), k.z(902), k.fixed(), k.opacity(0)]);
+    const dlgName  = k.add([k.text('', { size: 12, font: 'gmono' }), k.pos(TEXT_X, DY - DH / 2 + 14), k.color(ORANGE[0], ORANGE[1], ORANGE[2]), k.z(902), k.fixed(), k.opacity(0)]);
+    const dlgText  = k.add([k.text('', { size: 12, width: W - TEXT_X - 18, font: 'gmono' }), k.pos(TEXT_X, DY - DH / 2 + 34), k.color(CREAM[0], CREAM[1], CREAM[2]), k.z(902), k.fixed(), k.opacity(0)]);
+    const dlgNext  = k.add([k.text('NEXT', { size: 9, font: 'gmono' }), k.pos(W - 32, H - 13), k.anchor('center'), k.color(GOLD[0], GOLD[1], GOLD[2]), k.z(902), k.fixed(), k.opacity(0)]);
+    const dlgDots = [];
+    for (let i = 0; i < MAX_DOTS; i++) {
+      dlgDots.push(k.add([k.circle(2.5), k.pos(TEXT_X + i * 10, DY + DH / 2 - 13), k.anchor('center'), k.color(255, 255, 255), k.opacity(0), k.fixed(), k.z(902)]));
+    }
 
     function showDlg(npcKey) {
       currentNpc = npcKey;
       currentDialogue = npcDialogues[npcKey].dialogues;
       dialogueIndex = 0;
+      dlgOuter.opacity = dlgAccent.opacity = dlgPortraitBg.opacity = dlgPortrait.opacity = dlgText.opacity = dlgNext.opacity = dlgName.opacity = 1;
+      dlgOuter.scale = k.vec2(0.92);
+      k.tween(0.92, 1, 0.22, (s) => dlgOuter.scale = k.vec2(s), k.easings.easeOutBack);
       renderDlg();
     }
 
     function renderDlg() {
       if (dialogueIndex < currentDialogue.length) {
-        dlgOuter.opacity = dlgAccent.opacity = dlgText.opacity = dlgNext.opacity = dlgName.opacity = 1;
         dlgName.text = npcDialogues[currentNpc].name;
         dlgText.text = currentDialogue[dialogueIndex];
+        dlgPortrait.sprite = npcSpriteFor[currentNpc] ?? 'player';
+        dlgPortrait.frame = 0;
+        const total = currentDialogue.length;
+        dlgDots.forEach((dot, i) => {
+          dot.opacity = i >= total ? 0 : (i <= dialogueIndex ? 1 : 0.3);
+        });
       } else {
         const key = currentNpc;
         hideDlg();
@@ -233,7 +286,8 @@ export function initMainScene(k, navigate, joystickRef, interactRef) {
     }
 
     function hideDlg() {
-      dlgOuter.opacity = dlgAccent.opacity = dlgText.opacity = dlgNext.opacity = dlgName.opacity = 0;
+      dlgOuter.opacity = dlgAccent.opacity = dlgPortraitBg.opacity = dlgPortrait.opacity = dlgText.opacity = dlgNext.opacity = dlgName.opacity = 0;
+      dlgDots.forEach((dot) => dot.opacity = 0);
       currentDialogue = null;
       currentNpc = null;
     }
@@ -250,11 +304,22 @@ export function initMainScene(k, navigate, joystickRef, interactRef) {
       const skillKey = npcDialogues[npcKey].skillReward;
       if (collectedSkills.has(skillKey)) return;
       collectedSkills.add(skillKey);
-      skillsHUD.text = `Skills: ${collectedSkills.size}/5`;
+
+      const pip = skillPips[SKILL_KEYS.indexOf(skillKey)];
+      if (pip) {
+        pip.opacity = 1;
+        pip.scale = k.vec2(1.8);
+        k.tween(1.8, 1, 0.3, (s) => pip.scale = k.vec2(s), k.easings.easeOutBack);
+      }
+
       const skill = skills[skillKey];
-      k.add([k.rect(210, 72, { radius: 12 }), k.pos(W / 2, H / 2 - 55), k.anchor('center'), k.color(NAVY[0], NAVY[1], NAVY[2]), k.outline(2, k.rgb(GOLD[0], GOLD[1], GOLD[2])), k.opacity(1), k.z(950), k.fixed(), k.lifespan(3, { fade: 0.6 })]);
-      k.add([k.text(`${skill.icon}  ${skill.name}`, { size: 17, font: 'monospace' }), k.pos(W / 2, H / 2 - 62), k.anchor('center'), k.color(GOLD[0], GOLD[1], GOLD[2]), k.opacity(1), k.z(951), k.fixed(), k.lifespan(3, { fade: 0.6 })]);
-      k.add([k.text('Skill Unlocked!', { size: 12, font: 'monospace' }), k.pos(W / 2, H / 2 - 44), k.anchor('center'), k.color(CREAM[0], CREAM[1], CREAM[2]), k.opacity(1), k.z(951), k.fixed(), k.lifespan(3, { fade: 0.6 })]);
+      const toastBg = k.add([k.rect(210, 72, { radius: 12 }), k.pos(W / 2, H / 2 - 55), k.anchor('center'), k.scale(0.7), k.color(NAVY[0], NAVY[1], NAVY[2]), k.outline(2, k.rgb(GOLD[0], GOLD[1], GOLD[2])), k.opacity(prefersReducedMotion ? 1 : 0), k.z(950), k.fixed(), k.lifespan(3, { fade: 0.6 })]);
+      if (!prefersReducedMotion) {
+        k.tween(0.7, 1, 0.3, (s) => toastBg.scale = k.vec2(s), k.easings.easeOutBack);
+        k.tween(0, 1, 0.18, (o) => toastBg.opacity = o);
+      }
+      k.add([k.text(skill.name, { size: 17, font: 'gmono' }), k.pos(W / 2, H / 2 - 62), k.anchor('center'), k.color(GOLD[0], GOLD[1], GOLD[2]), k.opacity(1), k.z(951), k.fixed(), k.lifespan(3, { fade: 0.6 })]);
+      k.add([k.text('Skill Unlocked!', { size: 12, font: 'gmono' }), k.pos(W / 2, H / 2 - 44), k.anchor('center'), k.color(CREAM[0], CREAM[1], CREAM[2]), k.opacity(1), k.z(951), k.fixed(), k.lifespan(3, { fade: 0.6 })]);
     }
 
     function interact() {
@@ -283,8 +348,19 @@ export function initMainScene(k, navigate, joystickRef, interactRef) {
       const t = k.time();
 
       if (dlgNext.opacity > 0) {
-        blinkT += dt * 5;
-        dlgNext.opacity = 0.45 + Math.abs(Math.sin(blinkT)) * 0.55;
+        if (prefersReducedMotion) {
+          dlgNext.opacity = 1;
+        } else {
+          blinkT += dt * 5;
+          dlgNext.opacity = 0.45 + Math.abs(Math.sin(blinkT)) * 0.55;
+        }
+      }
+
+      if (!prefersReducedMotion) {
+        for (const p of particles) {
+          p.obj.pos.x = p.baseX + Math.sin(t * p.speed + p.phase) * 6;
+          p.obj.pos.y = p.baseY + Math.cos(t * p.speed * 0.7 + p.phase) * 4;
+        }
       }
 
       if (!currentDialogue) {
@@ -318,7 +394,7 @@ export function initMainScene(k, navigate, joystickRef, interactRef) {
         player.obj.stop();
         player.obj.frame = 0;
       }
-      player.obj.flipX = !facingRight;
+      player.obj.flipX = facingRight;
       player.obj.pos.x = px;
       player.obj.pos.y = py;
       player.obj.z = Math.floor(py);
@@ -330,7 +406,7 @@ export function initMainScene(k, navigate, joystickRef, interactRef) {
       pTag.opacity = currentDialogue ? 0 : 1;
 
       for (const npc of npcs) {
-        const b = Math.sin(t * 2.2 + npc.bobPhase) * 2.5;
+        const b = prefersReducedMotion ? 0 : Math.sin(t * 2.2 + npc.bobPhase) * 2.5;
         const bx = npc.baseX;
         const by = npc.baseY + b;
 
@@ -345,11 +421,17 @@ export function initMainScene(k, navigate, joystickRef, interactRef) {
         npc.check.opacity = npc.talked ? 1 : 0;
 
         const dist = Math.sqrt((px - bx) ** 2 + (py - by) ** 2);
+        const bangY = by - 66 + (prefersReducedMotion ? 0 : Math.sin(t * 5) * 2);
+        npc.bangBg.pos.x = bx;
+        npc.bangBg.pos.y = bangY;
+        npc.bang.pos.x = bx;
+        npc.bang.pos.y = bangY;
         if (dist < 72 && !npc.talked && !currentDialogue) {
-          npc.bang.pos.x = bx;
-          npc.bang.pos.y = by - 66 + Math.sin(t * 5) * 2;
-          npc.bang.opacity = 0.65 + Math.sin(t * 5) * 0.35;
+          const pulse = prefersReducedMotion ? 0.85 : 0.65 + Math.sin(t * 5) * 0.35;
+          npc.bangBg.opacity = pulse;
+          npc.bang.opacity = pulse;
         } else {
+          npc.bangBg.opacity = 0;
           npc.bang.opacity = 0;
         }
       }

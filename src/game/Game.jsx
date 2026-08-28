@@ -1,10 +1,44 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import kaplay from 'kaplay';
-import { initMainScene } from './scenes/mainScene';
+import { initMainScene, playerCharacters } from './scenes/mainScene';
 
 let globalGameInstance = null;
 const MAX_JOY = 48;
+
+function CharacterSelect({ onSelect }) {
+  return (
+    <div className="flex flex-1 flex-col items-center justify-center gap-8 px-4">
+      <div className="text-center">
+        <h2 className="text-lg font-semibold text-white">Choose your character</h2>
+        <p className="mt-1 text-xs text-white/40">You can pick again next time you play</p>
+      </div>
+      <div className="flex gap-6">
+        {Object.entries(playerCharacters).map(([key, char]) => (
+          <button
+            key={key}
+            onClick={() => onSelect(key)}
+            className="group flex flex-col items-center gap-3 rounded-xl border border-white/15 bg-white/5 px-6 py-5 transition-all hover:bg-white/10 active:scale-[0.97]"
+          >
+            <span
+              aria-hidden="true"
+              style={{
+                width: 64,
+                height: 64,
+                backgroundImage: `url(${char.sprite})`,
+                backgroundSize: '512px 64px',
+                backgroundPosition: '0 0',
+                backgroundRepeat: 'no-repeat',
+                imageRendering: 'pixelated',
+              }}
+            />
+            <span className="text-sm font-medium text-white">{char.label}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Game() {
   const canvasRef = useRef(null);
@@ -14,9 +48,10 @@ export default function Game() {
 
   const [joyBase, setJoyBase] = useState(null);
   const [joyDelta, setJoyDelta] = useState({ x: 0, y: 0 });
+  const [character, setCharacter] = useState(null);
 
   useEffect(() => {
-    if (globalGameInstance || !canvasRef.current) return;
+    if (!character || globalGameInstance || !canvasRef.current) return;
 
     const isMobile = window.innerWidth < 768;
     let gameWidth, gameHeight;
@@ -43,7 +78,7 @@ export default function Game() {
     });
 
     globalGameInstance = k;
-    initMainScene(k, navigate, joystickRef, interactRef);
+    initMainScene(k, navigate, joystickRef, interactRef, character);
     k.go('main');
 
     return () => {
@@ -52,7 +87,7 @@ export default function Game() {
         globalGameInstance = null;
       }
     };
-  }, [navigate]);
+  }, [navigate, character]);
 
   function onTouchStart(e) {
     e.preventDefault();
@@ -98,60 +133,67 @@ export default function Game() {
         </p>
       </div>
 
-      <div className="relative">
-        <canvas
-          ref={canvasRef}
-          className="border-2 border-brand-orange/30 rounded-lg shadow-2xl block"
-          style={{ touchAction: 'none', imageRendering: 'pixelated' }}
-        />
-        <div
-          className="absolute inset-0 md:hidden"
-          onTouchStart={onTouchStart}
-          onTouchMove={onTouchMove}
-          onTouchEnd={onTouchEnd}
-          style={{ touchAction: 'none' }}
-        >
-          {joyBase && (
-            <>
-              <div
-                className="absolute rounded-full border-2 border-white/20 bg-white/5 pointer-events-none"
-                style={{
-                  width: MAX_JOY * 2,
-                  height: MAX_JOY * 2,
-                  left: joyBase.x - MAX_JOY,
-                  top: joyBase.y - MAX_JOY,
-                }}
-              />
-              <div
-                className="absolute rounded-full bg-white/40 border-2 border-white/70 pointer-events-none"
-                style={{
-                  width: 26,
-                  height: 26,
-                  left: joyBase.x + joyDelta.x - 13,
-                  top: joyBase.y + joyDelta.y - 13,
-                }}
-              />
-            </>
-          )}
-        </div>
-      </div>
+      {!character ? (
+        <CharacterSelect onSelect={setCharacter} />
+      ) : (
+        <>
+          <div className="relative">
+            <canvas
+              ref={canvasRef}
+              className="border-2 border-brand-orange/30 rounded-lg shadow-2xl block"
+              style={{ touchAction: 'none', imageRendering: 'pixelated' }}
+            />
+            <div
+              className="absolute inset-0 md:hidden"
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+              style={{ touchAction: 'none' }}
+            >
+              {joyBase && (
+                <>
+                  <div
+                    className="absolute rounded-full border-2 border-brand-orange/40 bg-brand-orange/10 pointer-events-none"
+                    style={{
+                      width: MAX_JOY * 2,
+                      height: MAX_JOY * 2,
+                      left: joyBase.x - MAX_JOY,
+                      top: joyBase.y - MAX_JOY,
+                    }}
+                  />
+                  <div
+                    className="absolute rounded-full bg-brand-orange/80 border-2 border-white/90 pointer-events-none"
+                    style={{
+                      width: 26,
+                      height: 26,
+                      left: joyBase.x + joyDelta.x - 13,
+                      top: joyBase.y + joyDelta.y - 13,
+                    }}
+                  />
+                </>
+              )}
+            </div>
+          </div>
 
-      <div className="flex items-center gap-3">
-        <button
-          onClick={() => navigate('/')}
-          className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white border border-white/15 rounded-lg text-sm font-medium transition-colors"
-        >
-          ← Resume
-        </button>
-        <button
-          className="md:hidden px-7 py-2 bg-brand-orange hover:bg-brand-rust text-white rounded-lg font-bold text-base transition-colors"
-          onTouchStart={(e) => { e.preventDefault(); interactRef.current?.(); }}
-          style={{ touchAction: 'none' }}
-        >
-          TALK
-        </button>
-        <span className="md:hidden text-xs text-white/30">Drag anywhere to move</span>
-      </div>
+          <div className="flex items-center gap-3 md:hidden">
+            <button
+              className="px-7 py-2 bg-brand-orange hover:bg-brand-rust active:scale-[0.97] text-white rounded-lg font-bold text-base transition-all"
+              onTouchStart={(e) => { e.preventDefault(); interactRef.current?.(); }}
+              style={{ touchAction: 'none' }}
+            >
+              TALK
+            </button>
+            <span className="text-xs text-white/30">Drag anywhere to move</span>
+          </div>
+        </>
+      )}
+
+      <button
+        onClick={() => navigate('/')}
+        className="px-4 py-2 bg-white/10 hover:bg-white/20 active:scale-[0.97] text-white border border-white/15 rounded-lg text-sm font-medium transition-all"
+      >
+        Resume
+      </button>
     </div>
   );
 }

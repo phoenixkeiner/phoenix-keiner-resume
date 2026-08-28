@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { education } from './data'
 import { fadeUp, staggerContainer, viewport } from '../utils/animations'
-import { SectionHeading, Card, CardEyebrow, CardDescription } from './ui'
+import { SectionHeading } from './ui'
 
 export default function Education() {
   return (
@@ -9,26 +9,30 @@ export default function Education() {
       <SectionHeading>Education</SectionHeading>
 
       <motion.div
-        className="space-y-6 mt-10"
+        className="mt-10 space-y-10"
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
         viewport={viewport}
       >
         {education.map((edu, i) => (
-          <motion.div key={i} variants={fadeUp}>
-            <Card>
-              <CardEyebrow className="text-lg font-semibold">{edu.date}</CardEyebrow>
-              <h3 className="text-base font-semibold text-brand-dark/70">{edu.institution}</h3>
-              <CardDescription>
-                <p className="mb-1">{edu.degree}</p>
-                <ul className="list-disc ml-5 space-y-0.5">
-                  {edu.details.map((detail, j) => (
-                    <li key={j}>{detail}</li>
-                  ))}
-                </ul>
-              </CardDescription>
-            </Card>
+          <motion.div
+            key={i}
+            variants={fadeUp}
+            className="border-l-2 border-brand-blue/20 pl-6 md:grid md:grid-cols-[200px_1fr] md:gap-10 md:border-l-0 md:pl-0"
+          >
+            <div className="md:border-l-2 md:border-brand-blue/20 md:pl-6">
+              <p className="font-mono text-sm text-brand-blue">{edu.date}</p>
+              <h3 className="mt-1 text-lg font-semibold text-brand-dark">{edu.institution}</h3>
+            </div>
+            <div className="mt-4 text-sm text-brand-dark/70 leading-relaxed md:mt-0 md:border-l-2 md:border-brand-blue/20 md:pl-10">
+              <p className="mb-2">{edu.degree}</p>
+              <ul className="ml-5 list-disc space-y-1">
+                {edu.details.map((detail, j) => (
+                  <li key={j}>{detail}</li>
+                ))}
+              </ul>
+            </div>
           </motion.div>
         ))}
       </motion.div>
